@@ -1,6 +1,6 @@
 name: Deploy to GitHub Pages
 env:
-  PUBLISH_DIR: D2Craft/bin/Release/net5.0/publish/wwwroot
+  PUBLISH_DIR: D2Craft/bin/Release/net5.0/wwwroot
 
 # Run workflow on every push to the master branch
 on:
