@@ -32,8 +32,8 @@ jobs:
       run: cp D2Craft/wwwroot/index.html D2Craft/wwwroot/404.html
 
     # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
-    - name: Add .nojekyll file
-      run: touch D2Craft/wwwroot/.nojekyll
+    #- name: Add .nojekyll file
+    #  run: touch D2Craft/wwwroot/.nojekyll
       
     - name: Commit wwwroot to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@4.1.0
