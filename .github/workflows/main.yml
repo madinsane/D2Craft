@@ -23,7 +23,7 @@ jobs:
 
     # publishes Blazor project to the release-folder
     - name: Publish .NET Project
-      run: dotnet publish D2Craft/D2Craft.csproj --configuration Release --output build
+      run: dotnet publish D2Craft/D2Craft.csproj --configuration Release --output build -p:BlazorEnableCompression=false
     
     #- name: Rewrite base href
     #  uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
