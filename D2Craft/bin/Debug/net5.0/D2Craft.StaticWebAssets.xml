@@ -1,0 +1,4 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/" Path="E:\D2Modding\Project\D2Craft\D2Craft\bin\Debug\net5.0\wwwroot\" />
+  <ContentRoot BasePath="/" Path="E:\D2Modding\Project\D2Craft\D2Craft\obj\Debug\net5.0\scopedcss\bundle\" />
+</StaticWebAssets>
