@@ -1,4 +1,6 @@
 name: Deploy to GitHub Pages
+env:
+  PUBLISH_DIR: D2Craft/bin/Release/net5.0/publish/wwwroot
 
 # Run workflow on every push to the master branch
 on:
@@ -23,21 +25,28 @@ jobs:
     - name: Publish .NET Project
       run: dotnet publish D2Craft/D2Craft.csproj -c Release -o release --nologo
     
-    # changes the base-tag in index.html from '/' to 'D2Craft' to match GitHub Pages repository subdirectory
-    #- name: Change base-tag in index.html from / to D2Craft
-    #  run: sed -i 's/<base href="\/" \/>/<base href="\/D2Craft\/" \/>/g' D2Craft/wwwroot/index.html
-    
-    # copy index.html to 404.html to serve the same file when a file is not found
-    - name: copy index.html to 404.html
-      run: cp D2Craft/wwwroot/index.html D2Craft/wwwroot/404.html
+    - name: Rewrite base href
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      with:
+        html_path: ${{ env.PUBLISH_DIR }}/index.html
+        base_href: /D2Craft/
 
     # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
     #- name: Add .nojekyll file
     #  run: touch D2Craft/wwwroot/.nojekyll
       
-    - name: Commit wwwroot to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@4.1.0
+    #- name: Commit wwwroot to GitHub Pages
+    #  uses: JamesIves/github-pages-deploy-action@4.1.0
+    #  with:
+    #    GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+    #    BRANCH: gh-pages
+    #    FOLDER: D2Craft/wwwroot
+    - name: GitHub Pages
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v1.5.1
       with:
-        GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: D2Craft/wwwroot
+        target_branch: gh-pages
+        build_dir: ${{ env.PUBLISH_DIR }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
