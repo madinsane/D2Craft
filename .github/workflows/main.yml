@@ -23,7 +23,7 @@ jobs:
 
     # publishes Blazor project to the release-folder
     - name: Publish .NET Project
-      run: dotnet publish D2Craft/D2Craft.csproj -c Release -o release --nologo
+      run: dotnet publish D2Craft/D2Craft.csproj --configuration Release --output build
     
     #- name: Rewrite base href
     #  uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
@@ -40,6 +40,6 @@ jobs:
       with:
         #GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         BRANCH: gh-pages
-        FOLDER: D2Craft/wwwroot
+        FOLDER: build/wwwroot
         CLEAN: true
         
