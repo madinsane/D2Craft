@@ -1,6 +1,6 @@
 name: Deploy to GitHub Pages
-env:
-  PUBLISH_DIR: D2Craft/bin/Release/net5.0/wwwroot
+#env:
+#  PUBLISH_DIR: D2Craft/bin/Release/net5.0/wwwroot
 
 # Run workflow on every push to the master branch
 on:
@@ -35,18 +35,11 @@ jobs:
     #- name: Add .nojekyll file
     #  run: touch D2Craft/wwwroot/.nojekyll
       
-    #- name: Commit wwwroot to GitHub Pages
-    #  uses: JamesIves/github-pages-deploy-action@4.1.0
-    #  with:
-    #    GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-    #    BRANCH: gh-pages
-    #    FOLDER: D2Craft/wwwroot
-    - name: GitHub Pages
-      if: success()
-      uses: crazy-max/ghaction-github-pages@v1.5.1
+    - name: Commit wwwroot to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
-        target_branch: gh-pages
-        build_dir: ${{ env.PUBLISH_DIR }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: D2Craft/wwwroot
+        CLEAN: true
         
