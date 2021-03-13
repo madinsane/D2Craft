@@ -136,19 +136,146 @@ namespace D2Craft.Shared
                 List<string> stats = Properties[mod.Name].Stats;
                 foreach (var stat in stats)
                 {
+                    //Get Mod from ItemStatCost
                     if (ISC.ContainsKey(stat))
                     {
-                        string statStr = ISC[stat].DescStrPos;
-                        if (Strings.ContainsKey(statStr))
+                        ItemStatCost isc = ISC[stat];
+                        //Get String for mod
+                        string str;
+                        if (mod.Max >= 0)
                         {
-                            string str = Strings[statStr];
-                            str += " (" + mod.Min + "-" + mod.Max + ")";
-                            mod.FullMod = str;
+                            str = GetStringFromDesc(isc.DescGroupStrPos);
+                        } else
+                        {
+                            str = GetStringFromDesc(isc.DescGroupStrNeg);
                         }
+                        string str2 = "";
+                        if (isc.DescGroupStr2 != null && isc.DescGroupStr2 != "")
+                        {
+                            str2 = GetStringFromDesc(isc.DescGroupStr2);
+                        }
+                        string value = "(" + mod.Min + "-" + mod.Max + ")";
+                        int newMin;
+                        int newMax;
+                        bool ignoreStr = false;
+                        switch (isc.DescFunc.GetValueOrDefault())
+                        {
+                            case 12:
+                            case 1:
+                                value = "+" + value;
+                                break;
+                            case 2:
+                                value += "%";
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                value = "+" + value + "%";
+                                break;
+                            case 5:
+                                newMin = (mod.Min * 100) / 128;
+                                newMax = (mod.Max * 100) / 128;
+                                value = "(" + newMin + "-" + newMax + ")%";
+                                break;
+                            case 6:
+                                value = "+" + value;
+                                str += str2;
+                                break;
+                            case 7:
+                                value += "%";
+                                str += str2;
+                                break;
+                            case 8:
+                                value = "+" + value + "%";
+                                str += str2;
+                                break;
+                            case 9:
+                                str += str2;
+                                break;
+                            case 10:
+                                newMin = (mod.Min * 100) / 128;
+                                newMax = (mod.Max * 100) / 128;
+                                value = "(" + newMin + "-" + newMax + ")%";
+                                str += str2;
+                                break;
+                            case 11:
+                                newMin = 100 / mod.Min;
+                                newMax = 100 / mod.Max;
+                                value = "(" + newMax + "-" + newMin + ")";
+                                ignoreStr = true;
+                                str = "Repairs 1 Durability In " + value + " Seconds";
+                                break;
+                            case 13:
+                                //Fix
+                                str = "+" + value + " to class Skill Levels"; 
+                                ignoreStr = true;
+                                break;
+                            case 14:
+                                //Fix
+                                str = "+" + value + " to tab Skill Levels ([class] Only)";
+                                ignoreStr = true;
+                                break;
+                            case 15:
+                                //Fix
+                                str = mod.Min + "% to cast level " + mod.Max + " " + mod.Param;
+                                ignoreStr = true;
+                                break;
+                            case 16:
+                                str = "Level " + value + " " + mod.Param + " Aura When Equipped";
+                                ignoreStr = true;
+                                break;
+                            case 20:
+                                value = "-" + value + "%";
+                                break;
+                            case 21:
+                                value = "-" + value;
+                                break;
+                            case 23:
+                                //Fix
+                                value += "%";
+                                break;
+                            case 24:
+                                //Fix
+                                break;
+                            case 27:
+                                //Fix
+                                value = "+" + value;
+                                str = value + " to " + mod.Param + "(Class only)";
+                                ignoreStr = true;
+                                break;
+                            case 28:
+                                value = "+" + value;
+                                str = value + " to " + mod.Param;
+                                ignoreStr = true;
+                                break;
+
+                        }
+                        if (!ignoreStr)
+                        {
+                            if (isc.DescVal.GetValueOrDefault() == 1)
+                            {
+                                str = value + str;
+                            } else if (isc.DescVal.GetValueOrDefault() == 2) 
+                            {
+                                str += value;
+                            }
+                        }
+                        mod.FullMod = str;
                     }
                 }
             }
             //mod.FullMod = mod.Name + " (" + mod.Min + "-" + mod.Max + ")";
+        }
+
+        public string GetStringFromDesc(string desc)
+        {
+            if (Strings.ContainsKey(desc))
+            {
+                return Strings[desc];
+            } else
+            {
+                return "";
+            }
         }
 
         public void ConvertRecipes()

@@ -10,6 +10,8 @@ namespace D2Craft.Shared
     {
         [Name("code")]
         public string Code { get; set; }
+        [Name("val1")]
+        public int? Val1 { get; set; }
         [Name("stat1")]
         public string Stat1 { get; set; }
         [Name("stat2")]
