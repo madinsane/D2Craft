@@ -1,0 +1,55 @@
+﻿@inject StateContainer StateContainer
+@inject HttpClient Http
+@implements IDisposable
+
+<h2>Component 2</h2>
+
+<p>Component 2 Property: <b>@StateContainer.Property</b></p>
+
+<p>
+    <button @onclick="ChangePropertyValue">Change Property from Component 2</button>
+</p>
+
+@code {
+    protected override void OnInitialized()
+    {
+        StateContainer.OnChange += StateHasChanged;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (StateContainer.DataManager == null)
+        {
+            StateContainer.DataFiles = new Dictionary<DataFileTypes, string>();
+            string cubeMain = await Http.GetStringAsync("data/CubeMain.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.CubeMain, cubeMain);
+            string itemStatCost = await Http.GetStringAsync("data/ItemStatCost.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.ItemStatCost, itemStatCost);
+            string magicPrefix = await Http.GetStringAsync("data/MagicPrefix.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.MagicPrefix, magicPrefix);
+            string magicSuffix = await Http.GetStringAsync("data/MagicSuffix.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.MagicSuffix, magicSuffix);
+            string properties = await Http.GetStringAsync("data/Properties.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.Properties, properties);
+            string strings = await Http.GetStringAsync("data/string.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.Strings, strings);
+            string expStrings = await Http.GetStringAsync("data/expansionstring.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.ExpStrings, expStrings);
+            string patchStrings = await Http.GetStringAsync("data/patchstring.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.PatchStrings, patchStrings);
+            DataManager dataManager = new DataManager(StateContainer);
+            StateContainer.DataManager = dataManager;
+        }
+    }
+
+    private void ChangePropertyValue()
+    {
+        StateContainer.SetProperty($"New value set in Component 2: {DateTime.Now}");
+
+    }
+
+    public void Dispose()
+    {
+        StateContainer.OnChange -= StateHasChanged;
+    }
+}

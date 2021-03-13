@@ -1,16 +1,30 @@
 ﻿@page "/counter"
+@inject StateContainer StateContainer
+@implements IDisposable
 
-<h1>Counter</h1>
+<h1>Component 1</h1>
 
-<p>Current count: @currentCount</p>
+<p>Component 1 Property: <b>@StateContainer.Property</b></p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<p>
+    <button @onclick="ChangePropertyValue">Change Property from Component 1</button>
+</p>
+
+<Component2 />
 
 @code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
+    protected override void OnInitialized()
     {
-        currentCount++;
+        StateContainer.OnChange += StateHasChanged;
+    }
+
+    private void ChangePropertyValue()
+    {
+        StateContainer.SetProperty($"New value set in Component 1: {DateTime.Now}");
+    }
+
+    public void Dispose()
+    {
+        StateContainer.OnChange -= StateHasChanged;
     }
 }

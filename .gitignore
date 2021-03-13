@@ -1,2 +1,3 @@
 .var/
 /.vs/D2Craft
+/D2Craft/wwwroot/data/workspace.code-workspace
