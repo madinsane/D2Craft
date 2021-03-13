@@ -1,366 +1,367 @@
-code	stat1	stat2	stat3	stat4	stat5	stat6	stat7	*desc
-ac	armorclass							
-ac-miss	armorclass_vs_missile							
-ac-hth	armorclass_vs_hth							
-red-dmg	normal_damage_reduction							
-red-dmg%	damageresist							
-ac%	item_armor_percent							
-red-mag	magic_damage_reduction							
-str	strength							
-dex	dexterity							
-vit	vitality							
-enr	energy							
-mana	maxmana							
-mana%	item_maxmana_percent							
-hp	maxhp							
-hp%	item_maxhp_percent							
-att	tohit							
-block	toblock							
-cold-min	coldmindam							
-cold-max	coldmaxdam							
-cold-len	coldlength							
-fire-min	firemindam							
-fire-max	firemaxdam							
-ltng-min	lightmindam							
-ltng-max	lightmaxdam							
-pois-min	poisonmindam							
-pois-max	poisonmaxdam							
-pois-len	poisonlength							
-dmg-min	mindamage							
-dmg-max	maxdamage							
-dmg%	damagepercent							
-dmg-to-mana	item_damagetomana							
-res-fire	fireresist							
-res-fire-max	maxfireresist							
-res-ltng	lightresist							
-res-ltng-max	maxlightresist							
-res-cold	coldresist							
-res-cold-max	maxcoldresist							
-res-mag	magicresist							
-res-mag-max	maxmagicresist							
-res-pois	poisonresist							
-res-pois-max	maxpoisonresist							
-res-all	fireresist	lightresist	coldresist	poisonresist				
-res-all-max	maxfireresist	maxlightresist	maxcoldresist	maxpoisonresist				
-abs-fire%	item_absorbfire_percent							
-abs-fire	item_absorbfire							
-abs-ltng%	item_absorblight_percent							
-abs-ltng	item_absorblight							
-abs-mag%	item_absorbmagic_percent							
-abs-mag	item_absorbmagic							
-abs-cold%	item_absorbcold_percent							
-abs-cold	item_absorbcold							
-dur	maxdurability							
-dur%	item_maxdurability_percent							
-regen	hpregen							
-thorns	item_attackertakesdamage							
-swing1	item_fasterattackrate							
-swing2	item_fasterattackrate							
-swing3	item_fasterattackrate							
-gold%	item_goldbonus							
-mag%	item_magicbonus							
-knock	item_knockback							
-regen-stam	staminarecoverybonus							
-regen-mana	manarecoverybonus							
-stam	maxstamina							
-time	item_timeduration							
-manasteal	manadrainmindam							
-lifesteal	lifedrainmindam							
-ama	item_addclassskills							
-pal	item_addclassskills							
-nec	item_addclassskills							
-sor	item_addclassskills							
-bar	item_addclassskills							
-herb	item_doubleherbduration							
-light	item_lightradius							
-color	item_lightcolor							
-ease	item_req_percent							
-move1	item_fastermovevelocity							
-move2	item_fastermovevelocity							
-move3	item_fastermovevelocity							
-balance1	item_fastergethitrate							
-balance2	item_fastergethitrate							
-balance3	item_fastergethitrate							
-block1	item_fasterblockrate							
-block2	item_fasterblockrate							
-block3	item_fasterblockrate							
-cast1	item_fastercastrate							
-cast2	item_fastercastrate							
-cast3	item_fastercastrate							
-res-pois-len	item_poisonlengthresist							
-dmg	item_normaldamage							
-howl	item_howl							
-stupidity	item_stupidity							
-ignore-ac	item_ignoretargetac							
-reduce-ac	item_fractionaltargetac							
-noheal	item_preventheal							
-half-freeze	item_halffreezeduration							
-att%	item_tohit_percent							
-dmg-ac	item_damagetargetac							
-dmg-demon	item_demondamage_percent							
-dmg-undead	item_undeaddamage_percent							
-att-demon	item_demon_tohit							
-att-undead	item_undead_tohit							
-throw	item_throwable							
-fireskill	item_elemskill	item_elemskill_fire						
-allskills	item_allskills							
-light-thorns	item_attackertakeslightdamage							
-freeze	item_freeze							
-openwounds	item_openwounds							
-crush	item_crushingblow							
-kick	item_kickdamage							
-mana-kill	item_manaafterkill							
-demon-heal	item_healafterdemonkill							
-bloody	item_extrablood							
-deadly	item_deadlystrike							
-slow	item_slow							
-nofreeze	item_cannotbefrozen							
-stamdrain	item_staminadrainpct							
-reanimate	item_reanimate							
-pierce	item_pierce							
-magicarrow	item_magicarrow							
-explosivearrow	item_explosivearrow							
-dru	item_addclassskills							All Druid Skills
-ass	item_addclassskills							All Assassin Skills
-skill	item_singleskill							
-skilltab	item_addskill_tab							
-aura	item_aura							
-att-skill	item_skillonattack							Proc Skill on Swing
-hit-skill	item_skillonhit							Proc Skill on Hit
-gethit-skill	item_skillongethit							Proc Skill on Get Hit
-gembonus								Increase chance of finding Gems
+code	val1	stat1	stat2	stat3	stat4	stat5	stat6	stat7
+ac		armorclass						
+ac-miss		armorclass_vs_missile						
+ac-hth		armorclass_vs_hth						
+red-dmg		normal_damage_reduction						
+red-dmg%		damageresist						
+ac%		item_armor_percent						
+red-mag		magic_damage_reduction						
+str		strength						
+dex		dexterity						
+vit		vitality						
+enr		energy						
+mana		maxmana						
+mana%		item_maxmana_percent						
+hp		maxhp						
+hp%		item_maxhp_percent						
+att		tohit						
+block		toblock						
+cold-min		coldmindam						
+cold-max		coldmaxdam						
+cold-len		coldlength						
+fire-min		firemindam						
+fire-max		firemaxdam						
+ltng-min		lightmindam						
+ltng-max		lightmaxdam						
+pois-min		poisonmindam						
+pois-max		poisonmaxdam						
+pois-len		poisonlength						
+dmg-min								
+dmg-max								
+dmg%								
+dmg-to-mana		item_damagetomana						
+res-fire		fireresist						
+res-fire-max		maxfireresist						
+res-ltng		lightresist						
+res-ltng-max		maxlightresist						
+res-cold		coldresist						
+res-cold-max		maxcoldresist						
+res-mag		magicresist						
+res-mag-max		maxmagicresist						
+res-pois		poisonresist						
+res-pois-max		maxpoisonresist						
+res-all		fireresist	lightresist	coldresist	poisonresist			
+res-all-max		maxfireresist	maxlightresist	maxcoldresist	maxpoisonresist			
+abs-fire%		item_absorbfire_percent						
+abs-fire		item_absorbfire						
+abs-ltng%		item_absorblight_percent						
+abs-ltng		item_absorblight						
+abs-mag%		item_absorbmagic_percent						
+abs-mag		item_absorbmagic						
+abs-cold%		item_absorbcold_percent						
+abs-cold		item_absorbcold						
+dur		maxdurability						
+dur%		item_maxdurability_percent						
+regen		hpregen						
+thorns		item_attackertakesdamage						
+swing1		item_fasterattackrate						
+swing2		item_fasterattackrate						
+swing3		item_fasterattackrate						
+gold%		item_goldbonus						
+mag%		item_magicbonus						
+knock		item_knockback						
+regen-stam		staminarecoverybonus						
+regen-mana		manarecoverybonus						
+stam		maxstamina						
+time		item_timeduration						
+manasteal		manadrainmindam						
+lifesteal		lifedrainmindam						
+ama	0	item_addclassskills						
+pal	3	item_addclassskills						
+nec	2	item_addclassskills						
+sor	1	item_addclassskills						
+bar	4	item_addclassskills						
+herb		item_doubleherbduration						
+light		item_lightradius						
+color		item_lightcolor						
+ease		item_req_percent						
+move1		item_fastermovevelocity						
+move2		item_fastermovevelocity						
+move3		item_fastermovevelocity						
+balance1		item_fastergethitrate						
+balance2		item_fastergethitrate						
+balance3		item_fastergethitrate						
+block1		item_fasterblockrate						
+block2		item_fasterblockrate						
+block3		item_fasterblockrate						
+cast1		item_fastercastrate						
+cast2		item_fastercastrate						
+cast3		item_fastercastrate						
+res-pois-len		item_poisonlengthresist						
+dmg		item_normaldamage						
+howl		item_howl						
+stupidity		item_stupidity						
+ignore-ac		item_ignoretargetac						
+reduce-ac		item_fractionaltargetac						
+noheal		item_preventheal						
+half-freeze		item_halffreezeduration						
+att%		item_tohit_percent						
+dmg-ac		item_damagetargetac						
+dmg-demon		item_demondamage_percent						
+dmg-undead		item_undeaddamage_percent						
+att-demon		item_demon_tohit						
+att-undead		item_undead_tohit						
+throw		item_throwable						
+fireskill	1	item_elemskill	item_elemskill_fire					
+allskills		item_allskills						
+light-thorns		item_attackertakeslightdamage						
+freeze		item_freeze						
+openwounds		item_openwounds						
+crush		item_crushingblow						
+kick		item_kickdamage						
+mana-kill		item_manaafterkill						
+demon-heal		item_healafterdemonkill						
+bloody		item_extrablood						
+deadly		item_deadlystrike						
+slow		item_slow						
+nofreeze		item_cannotbefrozen						
+stamdrain		item_staminadrainpct						
+reanimate		item_reanimate						
+pierce		item_pierce						
+magicarrow		item_magicarrow						
+explosivearrow		item_explosivearrow						
+Expansion								
+dru	5	item_addclassskills						
+ass	6	item_addclassskills						
+skill		item_singleskill						
+skilltab		item_addskill_tab						
+aura		item_aura						
+att-skill		item_skillonattack						
+hit-skill		item_skillonhit						
+gethit-skill		item_skillongethit						
+gembonus								
 regen-dur								
 fire-fx								
 ltng-fx								
-sock	item_numsockets							
-dmg-fire	firemindam	firemaxdam						Fire Damage
-dmg-ltng	lightmindam	lightmaxdam						Lightning Damage
-dmg-mag	magicmindam	magicmaxdam						Magic Damge
-dmg-cold	coldmindam	coldmaxdam	coldlength					Cold Damage
-dmg-pois	poisonmindam	poisonmaxdam	poisonlength					Poison Damage
-dmg-throw	item_throw_mindamage	item_throw_maxdamage						Throwing Damage
-dmg-norm	mindamage	maxdamage						Normal Damage Modifier
-ac/lvl	item_armor_perlevel							AC per Player Level
-ac%/lvl	item_armorpercent_perlevel							AC% per Player Level
-hp/lvl	item_hp_perlevel							HP per Player Level
-mana/lvl	item_mana_perlevel							Mana per Player Level
-dmg/lvl	item_maxdamage_perlevel							Max Damage per Player Level
-dmg%/lvl	item_maxdamage_percent_perlevel							Max Damage % per Player Level
-str/lvl	item_strength_perlevel							Strength per Player Level
-dex/lvl	item_dexterity_perlevel							Dexterity per Player Level
-enr/lvl	item_energy_perlevel							Energy per Player Level
-vit/lvl	item_vitality_perlevel							Vitality per Player Level
-att/lvl	item_tohit_perlevel							Attack per Player Level
-att%/lvl	item_tohitpercent_perlevel							Attack% per Player Level
-dmg-cold/lvl	item_cold_damagemax_perlevel							Max Cold Damage per Player Level
-dmg-fire/lvl	item_fire_damagemax_perlevel							Max Fire Damage per Player Level
-dmg-ltng/lvl	item_ltng_damagemax_perlevel							Max Lightning Dmg per Player Level
-dmg-pois/lvl	item_pois_damagemax_perlevel							Max Poison Dmg per Player Level
-res-cold/lvl	item_resist_cold_perlevel							Resist Cold% per Player Level
-res-fire/lvl	item_resist_fire_perlevel							Resist Fire% per Player Level
-res-ltng/lvl	item_resist_ltng_perlevel							Resist Lightning% per Player Level
-res-pois/lvl	item_resist_pois_perlevel							Resist Poison% per Player Level
-abs-cold/lvl	item_absorb_cold_perlevel							Absorb Cold Dmg per Player Level
-abs-fire/lvl	item_absorb_fire_perlevel							Absorb Fire Dmg per Player Level
-abs-ltng/lvl	item_absorb_ltng_perlevel							Absorb Lightning Dmg per Player Lvl
-abs-pois/lvl	item_absorb_pois_perlevel							Absorb Poison Dmg per Player Lvl
-thorns/lvl	item_thorns_perlevel							Damage to Attacker per Player Lvl
-gold%/lvl	item_find_gold_perlevel							+% Gold Dropped per Player Lvl
-mag%/lvl	item_find_magic_perlevel							+% Magical per Player Lvl
-regen-stam/lvl	item_regenstamina_perlevel							+% Stamina Regeneration per Player Lvl
-stam/lvl	item_stamina_perlevel							Stamina per Player Level
-dmg-dem/lvl	item_damage_demon_perlevel							Damage to Demons % per Player Level
-dmg-und/lvl	item_damage_undead_perlevel							Damage to Undead % per Player Level
-att-dem/lvl	item_tohit_demon_perlevel							Attack Demons + per Player Level
-att-und/lvl	item_tohit_undead_perlevel							Attack Undead + per Player Level
-crush/lvl	item_crushingblow_perlevel							+% Chance of Crushing Blow per Player Level
-wounds/lvl	item_openwounds_perlevel							+% Chance of Open Wounds per Player Level
-kick/lvl	item_kick_damage_perlevel							Kick Damage per Player Level
-deadly/lvl	item_deadlystrike_perlevel							+% Chance of Deadly Strike per Player Level
-gems%/lvl								+% Chance of finding Gems per Player Level
-rep-dur	item_replenish_durability							regenerates durability
-rep-quant	item_replenish_quantity							regenerates quantity
-stack	item_extra_stack							Increased stack size
-item%								+% Chance of finding item
-dmg-slash								Slashing Damage
-dmg-slash%								Slashing Damage %
-dmg-crush								Crush Damage
-dmg-crush%								Crush Damage %
-dmg-thrust								Thrust Damage
-dmg-thrust%								Thrust Damage %
-abs-slash								Absorb Slashing Damage
-abs-crush								Absorb Crushing Damage
-abs-thrust								Absorb Thrusting Damage
-abs-slash%								Absorb Slashing Damage %
-abs-crush%								Absorb Crushing Damage %
-abs-thrust%								Absorb Thrusting Damage %
-ac/time	item_armor_bytime							"AC / time increment (0=day, 1=dusk, 2=night, 3=dawn)"
-ac%/time	item_armorpercent_bytime							AC% / time increment (8 periods)
-hp/time	item_hp_bytime							HP / time increment
-mana/time	item_mana_bytime							Mana / time increment
-dmg/time	item_maxdamage_bytime							Max Damage / time increment
-dmg%/time	item_maxdamage_percent_bytime							Max Damage % / time increment
-str/time	item_strength_bytime							Strength / time increment
-dex/time	item_dexterity_bytime							Dexterity / time increment
-enr/time	item_energy_bytime							Energy / time increment
-vit/time	item_vitality_bytime							Vitality / time increment
-att/time	item_tohit_bytime							To hit / time increment
-att%/time	item_tohitpercent_bytime							To Hit % / time increment
-dmg-cold/time	item_cold_damagemax_bytime							Cold Damage Max / time inc.
-dmg-fire/time	item_fire_damagemax_bytime							Fire Damage Max / time inc.
-dmg-ltng/time	item_ltng_damagemax_bytime							Lightning Damage Max / time inc.
-dmg-pois/time	item_pois_damagemax_bytime							Poison Damage Max / time inc.
-res-cold/time	item_resist_cold_bytime							Resist Cold / time inc.
-res-fire/time	item_resist_fire_bytime							Resist Fire / time inc.
-res-ltng/time	item_resist_ltng_bytime							Resist Lightning / time inc
-res-pois/time	item_resist_pois_bytime							Resist Poison / time inc
-abs-cold/time	item_absorb_cold_bytime							Absorb Cold / time inc.
-abs-fire/time	item_absorb_fire_bytime							Absorb Fire / time inc.
-abs-ltng/time	item_absorb_ltng_bytime							Absorb Lightning / time inc.
-abs-pois/time	item_absorb_pois_bytime							Absorb Poison / time inc.
-gold%/time	item_find_gold_bytime							Find Gold Amt % / time inc.
-mag%/time	item_find_magic_bytime							Find Magic % / time inc.
-regen-stam/time	item_regenstamina_bytime							% / time inc.
-stam/time	item_stamina_bytime							Stamina / time inc.
-dmg-dem/time	item_damage_demon_bytime							Damage to Demons % / time inc.
-dmg-und/time	item_damage_undead_bytime							Damage to Undead % / time inc.
-att-dem/time	item_tohit_demon_bytime							To Hit Demons % / time inc.
-att-und/time	item_tohit_undead_bytime							To Hit Undead % / time inc.
-crush/time	item_crushingblow_bytime							% chance of Crushing Blow / time inc.
-wounds/time	item_openwounds_bytime							+% chance of Open Wounds / time inc.
-kick/time	item_kick_damage_bytime							Kick Damage / time inc.
-deadly/time	item_deadlystrike_bytime							+% chance of Deadly Strike / time inc.
-gems%/time								+% chance of finding Gems / time inc.
-pierce-fire	passive_fire_pierce							Negates % of Enemy Cold Resistance
-pierce-ltng	passive_ltng_pierce							Negates % of Enemy Fire Resistance
-pierce-cold	passive_cold_pierce							Negates % of Enemy Lightning Resistance
-pierce-pois	passive_pois_pierce							Negates % of Enemy Poison Resistance
-dmg-mon								Damage vs. specific Monster Type
-dmg%-mon								Damage % vs. specific Monster Type
-att-mon								To Hit vs. specific Monster Type
-att%-mon								To Hit % vs. specific Monster Type
-ac-mon								AC vs. specific Monster Type
-ac%-mon								AC% vs. specific Monster Type
-indestruct	item_indesctructible							Indestructible
-charged	item_charged_skill							Charged Skill
-extra-fire	passive_fire_mastery							
-extra-ltng	passive_ltng_mastery							
-extra-cold	passive_cold_mastery							
-extra-pois	passive_pois_mastery							
-dmg-elem	firemindam	firemaxdam	lightmindam	lightmaxdam	coldmindam	coldmaxdam	coldlength	
-dmg-elem-min	firemindam	lightmindam	coldmindam					
-dmg-elem-max	firemaxdam	lightmaxdam	coldmaxdam	coldlength				
-all-stats	strength	energy	dexterity	vitality				
-addxp	item_addexperience							additional xp gain
-heal-kill	item_healafterkill							life gained after each kill
-cheap	item_reducedprices							reduces vendor prices
-rip	item_restinpeace							slain monsters' corpses can't be used
-att-mon%	attack_vs_montype							attack% vs. monster type
-dmg-mon%	damage_vs_montype							damage% vs. monster type
-kill-skill	item_skillonkill							Proc Skill on killing something
-death-skill	item_skillondeath							Proc Skill on getting killed
-levelup-skill	item_skillonlevelup							Proc Skill on level up
-skill-rand	item_singleskill							Bonus to random skill
-fade	fade							only use on monprop
-levelreq	item_levelreq							
+sock		item_numsockets						
+dmg-fire		firemindam	firemaxdam					
+dmg-ltng		lightmindam	lightmaxdam					
+dmg-mag		magicmindam	magicmaxdam					
+dmg-cold		coldmindam	coldmaxdam	coldlength				
+dmg-pois		poisonmindam	poisonmaxdam	poisonlength				
+dmg-throw		item_throw_mindamage	item_throw_maxdamage					
+dmg-norm		mindamage	maxdamage					
+ac/lvl		item_armor_perlevel						
+ac%/lvl		item_armorpercent_perlevel						
+hp/lvl		item_hp_perlevel						
+mana/lvl		item_mana_perlevel						
+dmg/lvl		item_maxdamage_perlevel						
+dmg%/lvl		item_maxdamage_percent_perlevel						
+str/lvl		item_strength_perlevel						
+dex/lvl		item_dexterity_perlevel						
+enr/lvl		item_energy_perlevel						
+vit/lvl		item_vitality_perlevel						
+att/lvl		item_tohit_perlevel						
+att%/lvl		item_tohitpercent_perlevel						
+dmg-cold/lvl		item_cold_damagemax_perlevel						
+dmg-fire/lvl		item_fire_damagemax_perlevel						
+dmg-ltng/lvl		item_ltng_damagemax_perlevel						
+dmg-pois/lvl		item_pois_damagemax_perlevel						
+res-cold/lvl		item_resist_cold_perlevel						
+res-fire/lvl		item_resist_fire_perlevel						
+res-ltng/lvl		item_resist_ltng_perlevel						
+res-pois/lvl		item_resist_pois_perlevel						
+abs-cold/lvl		item_absorb_cold_perlevel						
+abs-fire/lvl		item_absorb_fire_perlevel						
+abs-ltng/lvl		item_absorb_ltng_perlevel						
+abs-pois/lvl		item_absorb_pois_perlevel						
+thorns/lvl		item_thorns_perlevel						
+gold%/lvl		item_find_gold_perlevel						
+mag%/lvl		item_find_magic_perlevel						
+regen-stam/lvl		item_regenstamina_perlevel						
+stam/lvl		item_stamina_perlevel						
+dmg-dem/lvl		item_damage_demon_perlevel						
+dmg-und/lvl		item_damage_undead_perlevel						
+att-dem/lvl		item_tohit_demon_perlevel						
+att-und/lvl		item_tohit_undead_perlevel						
+crush/lvl		item_crushingblow_perlevel						
+wounds/lvl		item_openwounds_perlevel						
+kick/lvl		item_kick_damage_perlevel						
+deadly/lvl		item_deadlystrike_perlevel						
+gems%/lvl								
+rep-dur		item_replenish_durability						
+rep-quant		item_replenish_quantity						
+stack		item_extra_stack						
+item%								
+dmg-slash								
+dmg-slash%								
+dmg-crush								
+dmg-crush%								
+dmg-thrust								
+dmg-thrust%								
+abs-slash								
+abs-crush								
+abs-thrust								
+abs-slash%								
+abs-crush%								
+abs-thrust%								
+ac/time		item_armor_bytime						
+ac%/time		item_armorpercent_bytime						
+hp/time		item_hp_bytime						
+mana/time		item_mana_bytime						
+dmg/time		item_maxdamage_bytime						
+dmg%/time		item_maxdamage_percent_bytime						
+str/time		item_strength_bytime						
+dex/time		item_dexterity_bytime						
+enr/time		item_energy_bytime						
+vit/time		item_vitality_bytime						
+att/time		item_tohit_bytime						
+att%/time		item_tohitpercent_bytime						
+dmg-cold/time		item_cold_damagemax_bytime						
+dmg-fire/time		item_fire_damagemax_bytime						
+dmg-ltng/time		item_ltng_damagemax_bytime						
+dmg-pois/time		item_pois_damagemax_bytime						
+res-cold/time		item_resist_cold_bytime						
+res-fire/time		item_resist_fire_bytime						
+res-ltng/time		item_resist_ltng_bytime						
+res-pois/time		item_resist_pois_bytime						
+abs-cold/time		item_absorb_cold_bytime						
+abs-fire/time		item_absorb_fire_bytime						
+abs-ltng/time		item_absorb_ltng_bytime						
+abs-pois/time		item_absorb_pois_bytime						
+gold%/time		item_find_gold_bytime						
+mag%/time		item_find_magic_bytime						
+regen-stam/time		item_regenstamina_bytime						
+stam/time		item_stamina_bytime						
+dmg-dem/time		item_damage_demon_bytime						
+dmg-und/time		item_damage_undead_bytime						
+att-dem/time		item_tohit_demon_bytime						
+att-und/time		item_tohit_undead_bytime						
+crush/time		item_crushingblow_bytime						
+wounds/time		item_openwounds_bytime						
+kick/time		item_kick_damage_bytime						
+deadly/time		item_deadlystrike_bytime						
+gems%/time								
+pierce-fire		passive_fire_pierce						
+pierce-ltng		passive_ltng_pierce						
+pierce-cold		passive_cold_pierce						
+pierce-pois		passive_pois_pierce						
+dmg-mon								
+dmg%-mon								
+att-mon								
+att%-mon								
+ac-mon								
+ac%-mon								
+indestruct								
+charged		item_charged_skill						
+extra-fire		passive_fire_mastery						
+extra-ltng		passive_ltng_mastery						
+extra-cold		passive_cold_mastery						
+extra-pois		passive_pois_mastery						
+dmg-elem		firemindam	firemaxdam	lightmindam	lightmaxdam	coldmindam	coldmaxdam	coldlength
+dmg-elem-min		firemindam	lightmindam	coldmindam				
+dmg-elem-max		firemaxdam	lightmaxdam	coldmaxdam	coldlength			
+all-stats		strength	energy	dexterity	vitality			
+addxp		item_addexperience						
+heal-kill		item_healafterkill						
+cheap		item_reducedprices						
+rip		item_restinpeace						
+att-mon%		attack_vs_montype						
+dmg-mon%		damage_vs_montype						
+kill-skill		item_skillonkill						
+death-skill		item_skillondeath						
+levelup-skill		item_skillonlevelup						
+skill-rand		item_singleskill						
+fade		fade						
+levelreq		item_levelreq						
 ethereal								
-oskill	item_nonclassskill							
-state	state							
-randclassskill3	item_addclassskills							
-splash	item_splashonhit							splash
-corrupt	corrupted							
-corruptnum	corruptor							
-heroed	heroic							
-randclassskill2	item_addclassskills							
-coldskill	item_elemskill	item_elemskill_cold						cold skills
-ltngskill	item_elemskill	item_elemskill_lightning						lightning skills
-poisskill	item_elemskill	item_elemskill_poison						poison skills
-magskill	item_elemskill	item_elemskill_magic						magic skills
-velocity%	velocitypercent							
-mapdefense	map_defense							
-map-mon-fireres	map_mon_fireresist							
-map-play-fireres	map_play_fireresist							
-map-play-mag-gold%	map_play_magicbonus	map_play_goldbonus						
-map-glob-density	map_glob_density							
-map-play-addxp	map_play_addexperience							additional xp gain
-map-glob-arealevel	map_glob_arealevel							
-map-glob-monsterrarity	map_glob_monsterrarity							
-map-mon-fire-min	map_mon_firemindam							Fire Damage
-map-mon-fire-max	map_mon_firemaxdam							
-map-mon-ltng-min	map_mon_lightmindam							Lightning Damage
-map-mon-ltng-max	map_mon_lightmaxdam							
-map-mon-mag-min	map_mon_magicmindam							Magic Damge
-map-mon-mag-max	map_mon_magicmaxdam							
-map-mon-dmg-cold	map_mon_coldmindam	map_mon_coldmaxdam	map_mon_coldlength					Cold Damage
-map-mon-dmg-pois	map_mon_poisonmindam	map_mon_poisonmaxdam	map_mon_poisonlength					Poison Damage
-map-mon-extra-fire	map_mon_passive_fire_mastery							
-map-mon-extra-ltng	map_mon_passive_ltng_mastery							
-map-mon-extra-cold	map_mon_passive_cold_mastery							
-map-mon-extra-pois	map_mon_passive_pois_mastery							
-map-mon-att-cast-speed	map_mon_fasterattackrate	map_mon_fastercastrate						
-map-mon-att-pierce	map_mon_tohit	map_mon_pierce						
-map-mon-ac%	map_mon_ac%							
-map-mon-abs-fire%	map_mon_absorbcold_percent							
-map-mon-abs-ltng%	map_mon_absorbmagic_percent							
-map-mon-abs-mag%	map_mon_absorblight_percent							
-map-mon-abs-cold%	map_mon_absorbfire_percent							
-map-mon-red-dmg	map_mon_normal_damage_reduction							
-map-mon-velocity%	map_mon_velocitypercent							
-map-mon-regen	map_mon_hpregen							
-map-mon-lifesteal-hp%	map_mon_lifedrainmindam	map_mon_maxhp_percent						
-map-mon-balance1	map_mon_fastergethitrate							
-map-mon-hp%	map_mon_maxhp_percent							
-map-mon-openwounds	map_mon_openwounds							
-map-mon-crush	map_mon_crushingblow							
-map-mon-curseresist-hp%	map_mon_curse_resistance	map_mon_maxhp_percent						
-map-play-ac%	map_play_ac%							
-map-play-balance1	map_play_fastergethitrate							
-map-play-block	map_play_toblock							
-map-play-regen	map_play_hpregen							
-map-mon-pierce-fire	map_mon_passive_fire_pierce							Negates % of Enemy Cold Resistance
-map-mon-pierce-ltng	map_mon_passive_ltng_pierce							Negates % of Enemy Fire Resistance
-map-mon-pierce-cold	map_mon_passive_cold_pierce							Negates % of Enemy Lightning Resistance
-map-mon-pierce-pois	map_mon_passive_pois_pierce							Negates % of Enemy Poison Resistance
-map-play-res-all	map_play_fireresist	map_play_lightresist	map_play_coldresist	map_play_poisonresist				
-map-play-res-all-max	map_play_maxfireresist	map_play_maxlightresist	map_play_maxcoldresist	map_play_maxpoisonresist				
-map-mon-ed%	map_mon_ed%							
-map-mon-splash	map_mon_splash							splash
-rep-charge	item_replenish_charges							regenerates charges
-leapspeed	item_leap_speed							increases leap/leap attack speed
-maxcurse	max_curses							+ to max curses
-randelemskill	item_elemskill							
-curse-res	curse_resistance							
-heal-hit	item_healafterhit							life gained after each hit
-randclassskill1	item_addclassskills							
-map-mon-phys-as-extra-ltng	map_mon_phys_as_extra_ltng							
-map-mon-phys-as-extra-cold	map_mon_phys_as_extra_cold							
-map-mon-phys-as-extra-fire	map_mon_phys_as_extra_fire							
-map-mon-phys-as-extra-pois	map_mon_phys_as_extra_pois							
-map-mon-phys-as-extra-mag	map_mon_phys_as_extra_mag							
-map-glob-add-mon-doll	map_glob_add_mon_doll							
-map-glob-add-mon-succ	map_glob_add_mon_succ							
-map-glob-add-mon-vamp	map_glob_add_mon_vamp							
-map-glob-add-mon-cow	map_glob_add_mon_cow							
-map-glob-add-mon-horde	map_glob_add_mon_horde							
-map-glob-add-mon-ghost	map_glob_add_mon_ghost							
-extra-bonespears	extra_bonespears							
-extra-revives	extra_revives							
-extra-spirits	extra_spirits							
-pierce-phys	passive_phys_pierce							Negates % of Enemy Phys Resistance
-immune-prop	immune_stat							
-map-mon-deadlystrike	map_mon_deadlystrike							
-map-mon-cannotbefrozen	map_mon_cannotbefrozen							
-map-play-fasterattackrate	map_play_fasterattackrate							
-map-play-fastercastrate	map_play_fastercastrate							
-map-mon-skillondeath	map_mon_skillondeath							
-map-play-maxhp-percent	map_play_maxhp_percent							
-map-play-maxmana-percent	map_play_maxmana_percent							
-map-play-damageresist	map_play_damageresist							
-map-play-velocitypercent	map_play_velocitypercent							
-map-mon-pierce-all	map_mon_passive_fire_pierce	map_mon_passive_ltng_pierce	map_mon_passive_cold_pierce	map_mon_passive_pois_pierce				Negates % of Enemy Cold Resistance
-map-mon-nofreeze-hp%	map_mon_cannotbefrozen	map_mon_maxhp_percent						
-map-play-swing-cast	map_play_fasterattackrate	map_play_fastercastrate						
-map-play-hp%-mp%	map_play_maxhp_percent	map_play_maxmana_percent						
-map-play-speed-all	map_play_fasterattackrate	map_play_fastercastrate	map_play_velocitypercent					
-map-play-mag	map_play_magicbonus							
-map-play-gold	map_play_goldbonus							
+oskill		item_nonclassskill						
+state		state						
+randclassskill3	3	item_addclassskills						
+splash		item_splashonhit						
+corrupt		corrupted						
+corruptnum		corruptor						
+heroed		heroic						
+randclassskill2	2	item_addclassskills						
+coldskill	4	item_elemskill	item_elemskill_cold					
+ltngskill	2	item_elemskill	item_elemskill_lightning					
+poisskill	5	item_elemskill	item_elemskill_poison					
+magskill	3	item_elemskill	item_elemskill_magic					
+velocity%		velocitypercent						
+mapdefense		map_defense						
+map-mon-fireres		map_mon_fireresist						
+map-play-fireres		map_play_fireresist						
+map-play-mag-gold%		map_play_magicbonus	map_play_goldbonus					
+map-glob-density		map_glob_density						
+map-play-addxp		map_play_addexperience						
+map-glob-arealevel		map_glob_arealevel						
+map-glob-monsterrarity		map_glob_monsterrarity						
+map-mon-fire-min		map_mon_firemindam						
+map-mon-fire-max		map_mon_firemaxdam						
+map-mon-ltng-min		map_mon_lightmindam						
+map-mon-ltng-max		map_mon_lightmaxdam						
+map-mon-mag-min		map_mon_magicmindam						
+map-mon-mag-max		map_mon_magicmaxdam						
+map-mon-dmg-cold		map_mon_coldmindam	map_mon_coldmaxdam	map_mon_coldlength				
+map-mon-dmg-pois		map_mon_poisonmindam	map_mon_poisonmaxdam	map_mon_poisonlength				
+map-mon-extra-fire		map_mon_passive_fire_mastery						
+map-mon-extra-ltng		map_mon_passive_ltng_mastery						
+map-mon-extra-cold		map_mon_passive_cold_mastery						
+map-mon-extra-pois		map_mon_passive_pois_mastery						
+map-mon-att-cast-speed		map_mon_fasterattackrate	map_mon_fastercastrate					
+map-mon-att-pierce		map_mon_tohit	map_mon_pierce					
+map-mon-ac%		map_mon_ac%						
+map-mon-abs-fire%		map_mon_absorbcold_percent						
+map-mon-abs-ltng%		map_mon_absorbmagic_percent						
+map-mon-abs-mag%		map_mon_absorblight_percent						
+map-mon-abs-cold%		map_mon_absorbfire_percent						
+map-mon-red-dmg		map_mon_normal_damage_reduction						
+map-mon-velocity%		map_mon_velocitypercent						
+map-mon-regen		map_mon_hpregen						
+map-mon-lifesteal-hp%		map_mon_lifedrainmindam	map_mon_maxhp_percent					
+map-mon-balance1		map_mon_fastergethitrate						
+map-mon-hp%		map_mon_maxhp_percent						
+map-mon-openwounds		map_mon_openwounds						
+map-mon-crush		map_mon_crushingblow						
+map-mon-curseresist-hp%		map_mon_curse_resistance	map_mon_maxhp_percent					
+map-play-ac%		map_play_ac%						
+map-play-balance1		map_play_fastergethitrate						
+map-play-block		map_play_toblock						
+map-play-regen		map_play_hpregen						
+map-mon-pierce-fire		map_mon_passive_fire_pierce						
+map-mon-pierce-ltng		map_mon_passive_ltng_pierce						
+map-mon-pierce-cold		map_mon_passive_cold_pierce						
+map-mon-pierce-pois		map_mon_passive_pois_pierce						
+map-play-res-all		map_play_fireresist	map_play_lightresist	map_play_coldresist	map_play_poisonresist			
+map-play-res-all-max		map_play_maxfireresist	map_play_maxlightresist	map_play_maxcoldresist	map_play_maxpoisonresist			
+map-mon-ed%		map_mon_ed%						
+map-mon-splash		map_mon_splash						
+rep-charge		item_replenish_charges						
+leapspeed		item_leap_speed						
+maxcurse		max_curses						
+randelemskill	1	item_elemskill						
+curse-res		curse_resistance						
+heal-hit		item_healafterhit						
+randclassskill1	1	item_addclassskills						
+map-mon-phys-as-extra-ltng		map_mon_phys_as_extra_ltng						
+map-mon-phys-as-extra-cold		map_mon_phys_as_extra_cold						
+map-mon-phys-as-extra-fire		map_mon_phys_as_extra_fire						
+map-mon-phys-as-extra-pois		map_mon_phys_as_extra_pois						
+map-mon-phys-as-extra-mag		map_mon_phys_as_extra_mag						
+map-glob-add-mon-doll		map_glob_add_mon_doll						
+map-glob-add-mon-succ		map_glob_add_mon_succ						
+map-glob-add-mon-vamp		map_glob_add_mon_vamp						
+map-glob-add-mon-cow		map_glob_add_mon_cow						
+map-glob-add-mon-horde		map_glob_add_mon_horde						
+map-glob-add-mon-ghost		map_glob_add_mon_ghost						
+extra-bonespears		extra_bonespears						
+extra-revives		extra_revives						
+extra-spirits		extra_spirits						
+pierce-phys		passive_phys_pierce						
+immune-prop		immune_stat						
+map-mon-deadlystrike		map_mon_deadlystrike						
+map-mon-cannotbefrozen		map_mon_cannotbefrozen						
+map-play-fasterattackrate		map_play_fasterattackrate						
+map-play-fastercastrate		map_play_fastercastrate						
+map-mon-skillondeath		map_mon_skillondeath						
+map-play-maxhp-percent		map_play_maxhp_percent						
+map-play-maxmana-percent		map_play_maxmana_percent						
+map-play-damageresist		map_play_damageresist						
+map-play-velocitypercent		map_play_velocitypercent						
+map-mon-pierce-all		map_mon_passive_fire_pierce	map_mon_passive_ltng_pierce	map_mon_passive_cold_pierce	map_mon_passive_pois_pierce			
+map-mon-nofreeze-hp%		map_mon_cannotbefrozen	map_mon_maxhp_percent					
+map-play-swing-cast		map_play_fasterattackrate	map_play_fastercastrate					
+map-play-hp%-mp%		map_play_maxhp_percent	map_play_maxmana_percent					
+map-play-speed-all		map_play_fasterattackrate	map_play_fastercastrate	map_play_velocitypercent				
+map-play-mag		map_play_magicbonus						
+map-play-gold		map_play_goldbonus						
