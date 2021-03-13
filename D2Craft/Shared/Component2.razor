@@ -21,25 +21,26 @@ else
             <tr>
                 <th>Recipe</th>
                 <th>Inputs</th>
-                <th>Mod 1</th>
-                <th>Mod 2</th>
-                <th>Mod 3</th>
-                <th>Mod 4</th>
+                <th>Mods</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var recipe in StateContainer.DataManager.Recipes)
             {
-                <tr>
-                    <td>@recipe.Description</td>
-                    <td><p class="magic">Magic @recipe.ItemType</p>
-                    <img src="images/@(recipe.InputTypes[1]).png" alt="@recipe.InputNames[1]" title="@recipe.InputNames[1]"/>
-                    <img src="images/@(recipe.InputTypes[2]).png" alt="@recipe.InputNames[2]" title="@recipe.InputNames[2]"/>
-                    <img src="images/@(recipe.InputTypes[0]).png" alt="@recipe.InputNames[0]" title="@recipe.InputNames[0]"/></td>
-                    <td>@recipe.Mod1 (@recipe.Mod1Min - @recipe.Mod1Max)</td>
-                    <td>@recipe.Mod2 (@recipe.Mod2Min - @recipe.Mod2Max)</td>
-                    <td>@recipe.Mod3 (@recipe.Mod3Min - @recipe.Mod3Max)</td>
-                    <td>@recipe.Mod4 (@recipe.Mod4Min - @recipe.Mod4Max)</td>
+            <tr>
+                <td>@recipe.Description</td>
+                <td>
+                    <p class="magic">Magic @recipe.ItemType</p>
+                    <img src="images/@(recipe.InputTypes[1]).png" alt="@recipe.InputNames[1]" title="@recipe.InputNames[1]" />
+                    <img src="images/@(recipe.InputTypes[2]).png" alt="@recipe.InputNames[2]" title="@recipe.InputNames[2]" />
+                    <img src="images/@(recipe.InputTypes[0]).png" alt="@recipe.InputNames[0]" title="@recipe.InputNames[0]" />
+                </td>
+                <td class="crafted">
+                    @for (int i = 0; i < recipe.Mods.Length; i++)
+                    {
+                        @recipe.Mods[i].FullMod<br/>
+                    }
+                </td>
                 </tr>
             }
         </tbody>

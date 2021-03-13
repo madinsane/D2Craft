@@ -24,5 +24,7 @@ namespace D2Craft.Shared
         public string Stat6 { get; set; }
         [Name("stat7")]
         public string Stat7 { get; set; }
+        [Ignore]
+        public List<string> Stats { get; set; }
     }
 }

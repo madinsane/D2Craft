@@ -61,5 +61,7 @@ namespace D2Craft.Shared
         public string[] InputTypes { get; set; }
         [Ignore]
         public string[] InputNames { get; set; }
+        [Ignore]
+        public Mod[] Mods { get; set; }
     }
 }
