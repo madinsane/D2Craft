@@ -67,6 +67,21 @@ namespace D2Craft.Shared
                 { "shld", "Shield" },
                 { "tors", "Chest" },
                 { "weap", "Weapon" },
+                { "jew", "Jewel" },
+                { "r03g", "Tir Rune" },
+                { "r04g", "Nef Rune" },
+                { "r05g", "Eth Rune" },
+                { "r06g", "Ith Rune" },
+                { "r07g", "Tal Rune" },
+                { "r08g", "Ral Rune" },
+                { "r09g", "Ort Rune" },
+                { "r10g", "Thul Rune" },
+                { "r11g", "Amn Rune" },
+                { "r12g", "Sol Rune" },
+                { "gg4a", "Perfect Amethyst" },
+                { "gg4e", "Perfect Emerald" },
+                { "gg4r", "Perfect Ruby" },
+                { "gg4s", "Perfect Sapphire" },
             };
         }
 
@@ -83,6 +98,10 @@ namespace D2Craft.Shared
                 recipe.InputTypes[0] = recipe.Input2;
                 recipe.InputTypes[1] = recipe.Input3;
                 recipe.InputTypes[2] = recipe.Input4;
+                recipe.InputNames = new string[3];
+                recipe.InputNames[0] = TypeMap[recipe.Input2];
+                recipe.InputNames[1] = TypeMap[recipe.Input3];
+                recipe.InputNames[2] = TypeMap[recipe.Input4];
             }
         }
     }

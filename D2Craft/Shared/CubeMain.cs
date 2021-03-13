@@ -59,5 +59,7 @@ namespace D2Craft.Shared
         public string ItemType { get; set; }
         [Ignore]
         public string[] InputTypes { get; set; }
+        [Ignore]
+        public string[] InputNames { get; set; }
     }
 }
