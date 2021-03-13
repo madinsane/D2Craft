@@ -34,7 +34,7 @@ namespace D2Craft.Shared
             var strList2 = ReadCsv<StringTbl>(stateContainer.DataFiles[DataFileTypes.ExpStrings]);
             var strList3 = ReadCsv<StringTbl>(stateContainer.DataFiles[DataFileTypes.PatchStrings]);
             Strings = strList1.Union(strList2).Union(strList3).ToList();
-            
+
         }
 
         public static List<T> ReadCsv<T>(string file, bool hasHeader = true)
@@ -51,13 +51,10 @@ namespace D2Craft.Shared
             var records = csv.GetRecords<T>();
             return records.ToList();
         }
-    }
 
-    public class IntMap : ClassMap<int>
-    {
-        public IntMap()
+        public static string ConcInputs(CubeMain recipe)
         {
-
+            return "";
         }
     }
 }

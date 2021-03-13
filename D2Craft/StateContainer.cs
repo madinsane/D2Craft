@@ -22,5 +22,15 @@ namespace D2Craft
         }
 
         private void NotifyStateChanged() => OnChange?.Invoke();
+
+        public bool IsDataLoaded()
+        {
+            var dm = DataManager;
+            if (dm != null)
+            {
+                return dm.Recipes != null && dm.ISC != null && dm.Properties != null && dm.Prefixes != null && dm.Suffixes != null && dm.Strings != null;
+            }
+            return false;
+        }
     }
 }
