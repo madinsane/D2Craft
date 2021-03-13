@@ -20,12 +20,14 @@ namespace D2Craft.Shared
         public List<MagicAffix> Prefixes { get; set; }
         public List<MagicAffix> Suffixes { get; set; }
         public List<StringTbl> Strings { get; set; }
+        public Dictionary<string, string> TypeMap { get; set; }
         public StateContainer StateContainer { get; set; }
 
         public DataManager(StateContainer stateContainer)
         {
             StateContainer = stateContainer;
             Recipes = ReadCsv<CubeMain>(stateContainer.DataFiles[DataFileTypes.CubeMain]);
+            ConvertRecipes();
             ISC = ReadCsv<ItemStatCost>(stateContainer.DataFiles[DataFileTypes.ItemStatCost]);
             Properties = ReadCsv<Properties>(stateContainer.DataFiles[DataFileTypes.Properties]);
             Prefixes = ReadCsv<MagicAffix>(stateContainer.DataFiles[DataFileTypes.MagicPrefix]);
@@ -52,9 +54,36 @@ namespace D2Craft.Shared
             return records.ToList();
         }
 
-        public static string ConcInputs(CubeMain recipe)
+        public void InitTypeMap()
         {
-            return "";
+            TypeMap = new Dictionary<string, string>
+            {
+                { "amul", "Amulet" },
+                { "belt", "Belt" },
+                { "boot", "Boots" },
+                { "glov", "Gloves" },
+                { "helm", "Helm" },
+                { "ring", "Ring" },
+                { "shld", "Shield" },
+                { "tors", "Chest" },
+                { "weap", "Weapon" },
+            };
+        }
+
+        public void ConvertRecipes()
+        {
+            if (TypeMap == null)
+            {
+                InitTypeMap();
+            }
+            foreach (var recipe in Recipes)
+            {
+                recipe.ItemType = TypeMap[recipe.Input1];
+                recipe.InputTypes = new string[3];
+                recipe.InputTypes[0] = recipe.Input2;
+                recipe.InputTypes[1] = recipe.Input3;
+                recipe.InputTypes[2] = recipe.Input4;
+            }
         }
     }
 }

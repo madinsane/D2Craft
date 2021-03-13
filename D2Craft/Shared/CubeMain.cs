@@ -55,5 +55,9 @@ namespace D2Craft.Shared
         public int? Mod4Min { get; set; }
         [Name("mod 4 max")]
         public int? Mod4Max { get; set; }
+        [Ignore]
+        public string ItemType { get; set; }
+        [Ignore]
+        public string[] InputTypes { get; set; }
     }
 }
