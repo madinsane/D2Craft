@@ -1,0 +1,69 @@
+﻿@page "/help"
+@inject StateContainer StateContainer
+
+    <h2>Help</h2>
+
+    <h3 class="crafted">Crafted Items</h3>
+
+    <a class="crafted">Crafted items</a> are a specific rarity of item that can only be created through the Horadric Cube by upgrading a magic item.
+    <br />
+    The resulting item is similar to a rare item in that it has the same restrictions on which affixes it can roll naturally,
+    but instead of generating up to 6 affixes it generates 1-4 random affixes (still 3 max prefixes and suffixes) and then adds 1-4 additional affixes through the cube.
+    <br />
+    Important to note that none of the original affixes from the input magic item are kept nor do they affect the outcome of the crafted item
+    <br />
+    <br />
+
+    <p>Cube Affixes</p>
+    The affixes added by the cube are simply added to the item after the random affixes are chosen, which means they can not affect the types of affixes that
+    can roll on the item and can stack with the random affixes. E.g. if you create a crafted item that has a cube mod of +13 life and the item generates with
+    +37 life the end result will be +50 life. The amount of mods an item can have in total in Diablo 2 is very high so you never need to be concerned about hitting it
+    through playing.
+    <br />
+    <br />
+
+    <p>Random Affixes</p>
+    The randomly picked affixes are a bit more complex, the number of affixes is based on the final item level of the crafted item:
+    <br />
+    ilvls 1-30, 40% chance for 1 affix, 20% chance each for 2, 3 or 4 affixes.
+    <br />
+    ilvls 31-50, 60% chance for 2 affixes, 20% chance each for 3 or 4 affixes.
+    <br />
+    ilvls 51-70, 80% chance for 3 affixes, 20% chance for 4 affixes.
+    <br />
+    ilvls 71+, 100% chance for 4 affixes.
+    <br />
+    <br />
+    To calculate the item level and affix level (used for deciding which affixes can roll) the following calculations are done:
+    <br />
+    Character level (clvl), item level (ilvl), affix level (alvl) and quality level (qlvl) are needed. Quality level is determined purely by the base type of the item.
+    E.g. The quality level of a Sacred Armor is 85, and the qlvl of an Unearthed Wand is 86. Sound familiar? The qlvl is also used in determining which items can drop
+    from which enemy as well.
+    <br />
+    1. ilvl = int(50/100 * clvl) + int(50/100 * inputIlvl)
+    <br />
+    The inputIlvl is the ilvl of the input magic item, int() rounds the value down to the lower whole number and the 50/100 values can be modified in the cube config
+    but is always set to 50 for crafted items in vanilla and Project Diablo 2.
+    <br />
+    2. if (ilvl &gt; 99)
+    <br />
+    &nbsp;&nbsp; then ilvl = 99
+    <br />
+    3. if (qlvl &gt; ilvl)
+    <br />
+    &nbsp;&nbsp; then ilvl = qlvl
+    <br />
+    4. if (ilvl &lt; (99 - int(qlvl/2)))
+    <br />
+    &nbsp;&nbsp; then alvl = ilvl - int(qlvl/2)
+    <br />
+    &nbsp;&nbsp; else alvl = ilvl * 2 - 99
+    <br />
+    Example from <a href="http://classic.battle.net/diablo2exp/items/crafteditems.shtml">Arreat Summit</a>:<br/>
+    The Blood Weapon Recipe is used to craft a Berserker Axe (qlvl = 86) that was dropped by a monster in the Worldstone Tower in hell difficulty (ilvl = 85). <br />
+    The character used for crafting has level 78 (clvl = 78).<br />
+    First, ilvl has to be calculated: ilvl = int(.5 * 78) + int(.5 * 85) = 39 + 42 = 81.<br />
+    Then it's checked if the calculated ilvl is higher than 99. This is not the case, so ilvl remains 81. But qlvl 86 is higher than ilvl 81, so the ilvl is set to 86.<br />
+    Finally, the affix level can be determined: Since 86 is not smaller than (99 - int(86 / 2)) = 56 the affix level is ilvl * 2 - 99, in our example 86 * 2 - 99 = 73.<br />
+    So all pre- and suffixes with a level up to 73 can spawn on the Crafted Item.<br />
+    Note: Since the qlvl of amulets and rings is 1 the term int(qlvl/2) is always 0, so the affix level is effectively determined by ilvl, so affix level = ilvl = int(.5 * clvl) + int(.5 * ilvl).<br /><br /><br />
