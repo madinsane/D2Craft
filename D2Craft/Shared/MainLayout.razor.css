@@ -45,7 +45,7 @@ body {
     }
 
     .sidebar {
-        background-image: url('/images/bgNavmenu2_output.png');
+        background-image: url('images/bgNavmenu2_output.png');
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: contain;
@@ -76,9 +76,11 @@ body {
     }
 
     .sidebar {
-        background-image: url('/images/bgNavbarTrans_trim.png');
+        background-image: url('images/bgNavbarTrans_trim.png');
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: contain;
+        padding-top: 4rem;
+        padding-right: 3rem;
     }
 }
