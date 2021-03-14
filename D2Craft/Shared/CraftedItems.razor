@@ -1,0 +1,132 @@
+﻿@inject StateContainer StateContainer
+@inject HttpClient Http
+@implements IDisposable
+
+<h3 class="crafted">Crafted Items</h3>
+
+<p>
+    <input type="text" placeholder="Search..." @bind="Filter" @bind:event="oninput"/>
+</p>
+
+@if (!StateContainer.IsDataLoaded())
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Recipe</th>
+                <th>Inputs</th>
+                <th>Mods</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var recipe in StateContainer.DataManager.Recipes)
+            {
+                if (!IsVisible(recipe))
+                {
+                    continue;
+                }
+            <tr>
+                <td class="crafted">@recipe.Description</td>
+                <td>
+                    <p class="magic">
+                        Magic @recipe.ItemType<br />
+                        <img src="images/@(recipe.InputTypes[1]).png" alt="@recipe.InputNames[1]" title="@recipe.InputNames[1]" />
+                        <img src="images/@(recipe.InputTypes[2]).png" alt="@recipe.InputNames[2]" title="@recipe.InputNames[2]" />
+                        <img src="images/@(recipe.InputTypes[0]).png" alt="@recipe.InputNames[0]" title="@recipe.InputNames[0]" />
+                    </p>
+                </td>
+                <td class="crafted">
+                    @for (int i = 0; i < recipe.Mods.Length; i++)
+                    {
+                        if (recipe.Mods[i].FullMod != "")
+                        {
+                            @recipe.Mods[i].FullMod<br/>
+                        }
+                    }
+                </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        StateContainer.OnChange += StateHasChanged;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (StateContainer.DataManager == null)
+        {
+            StateContainer.DataFiles = new Dictionary<DataFileTypes, string>();
+            string cubeMain = await Http.GetStringAsync("data/CubeMain.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.CubeMain, cubeMain);
+            string itemStatCost = await Http.GetStringAsync("data/ItemStatCost.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.ItemStatCost, itemStatCost);
+            string magicPrefix = await Http.GetStringAsync("data/MagicPrefix.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.MagicPrefix, magicPrefix);
+            string magicSuffix = await Http.GetStringAsync("data/MagicSuffix.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.MagicSuffix, magicSuffix);
+            string properties = await Http.GetStringAsync("data/Properties.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.Properties, properties);
+            string strings = await Http.GetStringAsync("data/string.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.Strings, strings);
+            string expStrings = await Http.GetStringAsync("data/expansionstring.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.ExpStrings, expStrings);
+            string patchStrings = await Http.GetStringAsync("data/patchstring.txt");
+            StateContainer.DataFiles.Add(DataFileTypes.PatchStrings, patchStrings);
+            DataManager dataManager = new DataManager(StateContainer);
+            StateContainer.DataManager = dataManager;
+        }
+    }
+
+    private void ChangePropertyValue()
+    {
+        StateContainer.SetProperty($"New value set in Component 2: {DateTime.Now}");
+
+    }
+
+    public void Dispose()
+    {
+        StateContainer.OnChange -= StateHasChanged;
+    }
+
+    public bool IsVisible(CubeMain recipe)
+    {
+        if (string.IsNullOrEmpty(Filter))
+        {
+            return true;
+        }
+        if (StateContainer.DataManager.Culture.CompareInfo.IndexOf(recipe.Description, Filter, CompareOptions.IgnoreCase) >= 0)
+        {
+            return true;
+        }
+        if (StateContainer.DataManager.Culture.CompareInfo.IndexOf(recipe.ItemType, Filter, CompareOptions.IgnoreCase) >= 0)
+        {
+            return true;
+        }
+        foreach (var inputName in recipe.InputNames)
+        {
+            if (StateContainer.DataManager.Culture.CompareInfo.IndexOf(inputName, Filter, CompareOptions.IgnoreCase) >= 0)
+            {
+                return true;
+            }
+        }
+        foreach (var mod in recipe.Mods)
+        {
+            if (StateContainer.DataManager.Culture.CompareInfo.IndexOf(mod.FullMod, Filter, CompareOptions.IgnoreCase) >= 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public string Filter { get; set; }
+}

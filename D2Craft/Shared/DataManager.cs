@@ -23,11 +23,13 @@ namespace D2Craft.Shared
         public Dictionary<string, string> TypeMap { get; set; }
         public StateContainer StateContainer { get; set; }
         public bool Loaded { get; set; }
+        public CultureInfo Culture { get; set; }
 
         public DataManager(StateContainer stateContainer)
         {
             Loaded = false;
             StateContainer = stateContainer;
+            Culture = CultureInfo.InvariantCulture;
             Recipes = ReadCsvToList<CubeMain>(stateContainer.DataFiles[DataFileTypes.CubeMain]);
             ISC = ReadCsvToDictISC(stateContainer.DataFiles[DataFileTypes.ItemStatCost]);
             Properties = ReadCsvToDictProp(stateContainer.DataFiles[DataFileTypes.Properties]);
@@ -144,17 +146,21 @@ namespace D2Craft.Shared
                         string str;
                         if (mod.Max >= 0)
                         {
-                            str = GetStringFromDesc(isc.DescGroupStrPos);
+                            str = GetStringFromDesc(isc.DescStrPos);
                         } else
                         {
-                            str = GetStringFromDesc(isc.DescGroupStrNeg);
+                            str = GetStringFromDesc(isc.DescStrNeg);
                         }
                         string str2 = "";
-                        if (isc.DescGroupStr2 != null && isc.DescGroupStr2 != "")
+                        if (isc.DescStr2 != null && isc.DescStr2 != "")
                         {
-                            str2 = GetStringFromDesc(isc.DescGroupStr2);
+                            str2 = GetStringFromDesc(isc.DescStr2);
                         }
                         string value = "(" + mod.Min + "-" + mod.Max + ")";
+                        if (mod.Min == mod.Max)
+                        {
+                            value = mod.Max.ToString();
+                        }
                         int newMin;
                         int newMax;
                         bool ignoreStr = false;
@@ -254,10 +260,10 @@ namespace D2Craft.Shared
                         {
                             if (isc.DescVal.GetValueOrDefault() == 1)
                             {
-                                str = value + str;
+                                str = value + " " + str;
                             } else if (isc.DescVal.GetValueOrDefault() == 2) 
                             {
-                                str += value;
+                                str += " " + value;
                             }
                         }
                         mod.FullMod = str;
@@ -286,6 +292,8 @@ namespace D2Craft.Shared
             }
             foreach (var recipe in Recipes)
             {
+                TextInfo descInfo = Culture.TextInfo;
+                recipe.Description = descInfo.ToTitleCase(recipe.Description);
                 recipe.ItemType = TypeMap[recipe.Input1];
                 recipe.InputTypes = new string[3];
                 recipe.InputTypes[0] = recipe.Input2;
