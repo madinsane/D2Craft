@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "D2Forge", "D2Forge\D2Forge.csproj", "{C22B817A-0E77-4486-88A3-257D3484182A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C22B817A-0E77-4486-88A3-257D3484182A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C22B817A-0E77-4486-88A3-257D3484182A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C22B817A-0E77-4486-88A3-257D3484182A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C22B817A-0E77-4486-88A3-257D3484182A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B5CE494-029C-43A6-ABD2-0C129CDEA916}
+	EndGlobalSection
+EndGlobal

@@ -1,5 +1,5 @@
 .var/
-/.vs/D2Craft
-/D2Craft/wwwroot/data/workspace.code-workspace
-/D2Craft/bin
-/D2Craft/obj
+/.vs/D2Forge
+/D2Forge/wwwroot/data/workspace.code-workspace
+/D2Forge/bin
+/D2Forge/obj
