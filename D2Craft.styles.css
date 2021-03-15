@@ -84,6 +84,10 @@ body[b-4ozggxmpde] {
         padding-top: 4rem;
         padding-right: 3rem;
     }
+
+    .search[b-4ozggxmpde] {
+        width: 40%;
+    }
 }
 /* /Shared/NavMenu.razor.rz.scp.css */
 .navbar-toggler[b-eg3unj36y3] {
