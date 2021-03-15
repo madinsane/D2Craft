@@ -1,6 +1,4 @@
 name: Deploy to GitHub Pages
-#env:
-#  PUBLISH_DIR: D2Craft/bin/Release/net5.0/wwwroot
 
 # Run workflow on every push to the master branch
 on:
@@ -23,22 +21,11 @@ jobs:
 
     # publishes Blazor project to the release-folder
     - name: Publish .NET Project
-      run: dotnet publish D2Craft/D2Craft.csproj --configuration Release --output build -p:BlazorEnableCompression=false
-    
-    #- name: Rewrite base href
-    #  uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
-    #  with:
-    #    html_path: ${{ env.PUBLISH_DIR }}/index.html
-    #    base_href: /D2Craft/
-
-    # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (Allow files and folders starting with an underscore)
-    #- name: Add .nojekyll file
-    #  run: touch D2Craft/wwwroot/.nojekyll
+      run: dotnet publish D2Forge/D2Forge.csproj --configuration Release --output build -p:BlazorEnableCompression=false
       
     - name: Commit wwwroot to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
-        #GITHUB_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         BRANCH: gh-pages
         FOLDER: build/wwwroot
         CLEAN: true
