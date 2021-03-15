@@ -28,7 +28,7 @@ namespace D2Craft
             var dm = DataManager;
             if (dm != null)
             {
-                return dm.Recipes != null && dm.ISC != null && dm.Properties != null && dm.Prefixes != null && dm.Suffixes != null && dm.Strings != null && dm.Loaded;
+                return dm.Recipes != null && dm.ISC != null && dm.Properties != null && dm.Prefixes != null && dm.Suffixes != null && dm.Strings != null && dm.ItemDict != null && dm.Loaded;
             }
             return false;
         }

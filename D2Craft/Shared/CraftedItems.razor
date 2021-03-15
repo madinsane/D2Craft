@@ -1,19 +1,48 @@
-﻿@inject StateContainer StateContainer
+﻿@inject StateContainer stateContainer
 @inject HttpClient Http
 @implements IDisposable
 
 <h3 class="crafted">Crafted Items</h3>
 
-<p>
-    <input type="text" placeholder="Search..." @bind="Filter" @bind:event="oninput"/>
-</p>
-
-@if (!StateContainer.IsDataLoaded())
+@if (!stateContainer.IsDataLoaded())
 {
     <p><em>Loading...</em></p>
 }
 else
 {
+    <div class="item-info col-md-12">
+        <div class="search col-md-6" style="float:left">
+            <LoreSoft.Blazor.Controls.Typeahead SearchMethod="@SearchItems"
+                               @bind-Value="@SelectedItem"
+                               placeholder="Enter Item base..."
+                               @oninput="CalculateItemDetails">
+                <SelectedTemplate Context="item">
+                    @item.FullName
+                </SelectedTemplate>
+                <ResultTemplate Context="item">
+                    @item.FullName
+                </ResultTemplate>
+            </LoreSoft.Blazor.Controls.Typeahead>
+            <a style="color:#fff">Char Level: </a><input type="number" class="numinput" placeholder="Char Level" @bind-value="CurrentClvl" @bind-value:event="oninput" @onkeyup="CalculateItemDetails"/><br/>
+            <a style="color:#fff">Item Level: </a><input type="number" class="numinput" placeholder="Item Level" @bind-value="CurrentIlvl" @bind-value:event="oninput" @onkeyup="CalculateItemDetails"/>
+        </div>
+        <div class="item-result col-md-6" style="float:right">
+            Results:<br/>
+            @if (SelectedItem == null)
+            {
+                <a>No item set</a><br />
+            } else
+            {
+                <a>Item: </a>@SelectedItem.FullName<br/>
+            }
+            Item Level: @NewIlvl<br/>
+            Affix Level: @NewAlvl<br/>
+            @NumAffixes
+        </div>
+    </div>
+    <div class="col-md-7" style="float:left;padding:1rem">
+        <input type="text" placeholder="Search Crafts..." @bind="Filter" @bind:event="oninput" />
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -23,7 +52,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var recipe in StateContainer.DataManager.Recipes)
+            @foreach (var recipe in stateContainer.DataManager.Recipes)
             {
                 if (!IsVisible(recipe))
                 {
@@ -57,44 +86,52 @@ else
 @code {
     protected override void OnInitialized()
     {
-        StateContainer.OnChange += StateHasChanged;
+        stateContainer.OnChange += StateHasChanged;
     }
 
     protected override async Task OnInitializedAsync()
     {
-        if (StateContainer.DataManager == null)
+        if (stateContainer.DataManager == null)
         {
-            StateContainer.DataFiles = new Dictionary<DataFileTypes, string>();
+            stateContainer.DataFiles = new Dictionary<DataFileTypes, string>();
             string cubeMain = await Http.GetStringAsync("data/CubeMain.txt");
-            StateContainer.DataFiles.Add(DataFileTypes.CubeMain, cubeMain);
+            stateContainer.DataFiles.Add(DataFileTypes.CubeMain, cubeMain);
             string itemStatCost = await Http.GetStringAsync("data/ItemStatCost.txt");
-            StateContainer.DataFiles.Add(DataFileTypes.ItemStatCost, itemStatCost);
+            stateContainer.DataFiles.Add(DataFileTypes.ItemStatCost, itemStatCost);
             string magicPrefix = await Http.GetStringAsync("data/MagicPrefix.txt");
-            StateContainer.DataFiles.Add(DataFileTypes.MagicPrefix, magicPrefix);
+            stateContainer.DataFiles.Add(DataFileTypes.MagicPrefix, magicPrefix);
             string magicSuffix = await Http.GetStringAsync("data/MagicSuffix.txt");
-            StateContainer.DataFiles.Add(DataFileTypes.MagicSuffix, magicSuffix);
+            stateContainer.DataFiles.Add(DataFileTypes.MagicSuffix, magicSuffix);
             string properties = await Http.GetStringAsync("data/Properties.txt");
-            StateContainer.DataFiles.Add(DataFileTypes.Properties, properties);
+            stateContainer.DataFiles.Add(DataFileTypes.Properties, properties);
             string strings = await Http.GetStringAsync("data/string.txt");
-            StateContainer.DataFiles.Add(DataFileTypes.Strings, strings);
+            stateContainer.DataFiles.Add(DataFileTypes.Strings, strings);
             string expStrings = await Http.GetStringAsync("data/expansionstring.txt");
-            StateContainer.DataFiles.Add(DataFileTypes.ExpStrings, expStrings);
+            stateContainer.DataFiles.Add(DataFileTypes.ExpStrings, expStrings);
             string patchStrings = await Http.GetStringAsync("data/patchstring.txt");
-            StateContainer.DataFiles.Add(DataFileTypes.PatchStrings, patchStrings);
-            DataManager dataManager = new DataManager(StateContainer);
-            StateContainer.DataManager = dataManager;
+            stateContainer.DataFiles.Add(DataFileTypes.PatchStrings, patchStrings);
+            string items = await Http.GetStringAsync("data/Items.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.Items, items);
+            DataManager dataManager = new DataManager(stateContainer);
+            ItemEnumerable = dataManager.ItemDict.Values;
+            CurrentIlvl = 0;
+            CurrentClvl = 0;
+            NewIlvl = 0;
+            NewAlvl = 0;
+            NumAffixes = "40% chance for 1 affix, 20% chance each for 2, 3 or 4 affixes";
+            stateContainer.DataManager = dataManager;
         }
     }
 
     private void ChangePropertyValue()
     {
-        StateContainer.SetProperty($"New value set in Component 2: {DateTime.Now}");
+        stateContainer.SetProperty($"New value set in Component 2: {DateTime.Now}");
 
     }
 
     public void Dispose()
     {
-        StateContainer.OnChange -= StateHasChanged;
+        stateContainer.OnChange -= StateHasChanged;
     }
 
     public bool IsVisible(CubeMain recipe)
@@ -103,24 +140,24 @@ else
         {
             return true;
         }
-        if (StateContainer.DataManager.Culture.CompareInfo.IndexOf(recipe.Description, Filter, CompareOptions.IgnoreCase) >= 0)
+        if (stateContainer.DataManager.Culture.CompareInfo.IndexOf(recipe.Description, Filter, CompareOptions.IgnoreCase) >= 0)
         {
             return true;
         }
-        if (StateContainer.DataManager.Culture.CompareInfo.IndexOf(recipe.ItemType, Filter, CompareOptions.IgnoreCase) >= 0)
+        if (stateContainer.DataManager.Culture.CompareInfo.IndexOf(recipe.ItemType, Filter, CompareOptions.IgnoreCase) >= 0)
         {
             return true;
         }
         foreach (var inputName in recipe.InputNames)
         {
-            if (StateContainer.DataManager.Culture.CompareInfo.IndexOf(inputName, Filter, CompareOptions.IgnoreCase) >= 0)
+            if (stateContainer.DataManager.Culture.CompareInfo.IndexOf(inputName, Filter, CompareOptions.IgnoreCase) >= 0)
             {
                 return true;
             }
         }
         foreach (var mod in recipe.Mods)
         {
-            if (StateContainer.DataManager.Culture.CompareInfo.IndexOf(mod.FullMod, Filter, CompareOptions.IgnoreCase) >= 0)
+            if (stateContainer.DataManager.Culture.CompareInfo.IndexOf(mod.FullMod, Filter, CompareOptions.IgnoreCase) >= 0)
             {
                 return true;
             }
@@ -129,4 +166,67 @@ else
     }
 
     public string Filter { get; set; }
+
+    public IEnumerable<Items> ItemEnumerable { get; set; }
+
+    public Items SelectedItem { get; set; }
+    public int CurrentIlvl { get; set; }
+    public int CurrentClvl { get; set; }
+    public int NewIlvl { get; set; }
+    public int NewAlvl { get; set; }
+    public string NumAffixes { get; set; }
+
+    public Task<IEnumerable<Items>> SearchItems(string searchText)
+    {
+        var result = ItemEnumerable.Where(x => x.FullName.ToLower().Contains(searchText.ToLower())).ToList();
+        return Task.FromResult<IEnumerable<Items>>(result);
+    }
+
+    public void CalculateItemDetails()
+    {
+        
+        int ilvl = (int)(0.5f * CurrentClvl) + (int)(0.5f * CurrentIlvl);
+        if (ilvl > 99)
+        {
+            ilvl = 99;
+        }
+        int qlvl;
+        if (SelectedItem == null)
+        {
+            qlvl = 0;
+        } else
+        {
+            qlvl = SelectedItem.Qlvl;
+        }
+        if (qlvl > ilvl)
+        {
+            ilvl = qlvl;
+        }
+        if (ilvl > (99 - (int)(qlvl / 2)))
+        {
+            NewAlvl = ilvl - (int)(qlvl / 2);
+        } else
+        {
+            NewAlvl = ilvl * 2 - 99;
+        }
+        if (NewAlvl < 0)
+        {
+            NewAlvl = 0;
+        }
+        NewIlvl = ilvl;
+        if (ilvl <= 30)
+        {
+            NumAffixes = "40% chance for 1 affix, 20% chance each for 2, 3 or 4 affixes";
+        } else if (ilvl <= 50)
+        {
+            NumAffixes = "60% chance for 2 affixes, 20% chance each for 3 or 4 affixes";
+        } else if (ilvl <= 70)
+        {
+            NumAffixes = "80% chance for 3 affix, 20% chance for 4 affixes";
+        } else
+        {
+            NumAffixes = "4 affixes";
+        }
+    }
+
 }

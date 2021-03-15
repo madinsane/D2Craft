@@ -83,4 +83,8 @@ body {
         padding-top: 4rem;
         padding-right: 3rem;
     }
+
+    .search {
+        width: 40%;
+    }
 }

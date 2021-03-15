@@ -16,7 +16,8 @@ namespace D2Craft.Shared
             Properties,
             Strings,
             ExpStrings,
-            PatchStrings
+            PatchStrings,
+            Items
         }
     }
 }

@@ -20,6 +20,7 @@ namespace D2Craft.Shared
         public List<MagicAffix> Prefixes { get; set; }
         public List<MagicAffix> Suffixes { get; set; }
         public Dictionary<string, string> Strings { get; set; }
+        public Dictionary<string, Items> ItemDict { get; set; }
         public Dictionary<string, string> TypeMap { get; set; }
         public StateContainer StateContainer { get; set; }
         public bool Loaded { get; set; }
@@ -36,11 +37,13 @@ namespace D2Craft.Shared
             CompilePropertyStats();
             Prefixes = ReadCsvToList<MagicAffix>(stateContainer.DataFiles[DataFileTypes.MagicPrefix]);
             Suffixes = ReadCsvToList<MagicAffix>(stateContainer.DataFiles[DataFileTypes.MagicSuffix]);
+            ItemDict = ReadCsvToDictItems(stateContainer.DataFiles[DataFileTypes.Items]);
             Strings = new Dictionary<string, string>();
             ReadStrings(stateContainer.DataFiles[DataFileTypes.PatchStrings]);
             ReadStrings(stateContainer.DataFiles[DataFileTypes.ExpStrings]);
             ReadStrings(stateContainer.DataFiles[DataFileTypes.Strings]);
             ConvertRecipes();
+            GetItemStrings();
             Loaded = true;
         }
 
@@ -105,6 +108,29 @@ namespace D2Craft.Shared
             return dict;
         }
 
+        public static Dictionary<string, Items> ReadCsvToDictItems(string file, bool hasHeader = true)
+        {
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                HasHeaderRecord = hasHeader,
+                Delimiter = "\t"
+            };
+            byte[] byteArray = Encoding.ASCII.GetBytes(file);
+            MemoryStream stream = new MemoryStream(byteArray);
+            using var reader = new StreamReader(stream);
+            using var csv = new CsvReader(reader, config);
+            var records = csv.GetRecords<Items>();
+            Dictionary<string, Items> dict = new Dictionary<string, Items>();
+            foreach (var record in records)
+            {
+                if (!dict.ContainsKey(record.NameStr))
+                {
+                    dict.Add(record.NameStr, record);
+                }
+            }
+            return dict;
+        }
+
         public void ReadStrings(string file)
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -122,6 +148,21 @@ namespace D2Craft.Shared
                 if (!Strings.ContainsKey(record.Name))
                 {
                     Strings.Add(record.Name, record.Content);
+                }
+            }
+        }
+
+        public void GetItemStrings()
+        {
+            foreach (Items item in ItemDict.Values)
+            {
+                if (string.IsNullOrEmpty(item.NameStr))
+                {
+                    continue;
+                }
+                if (Strings.ContainsKey(item.NameStr))
+                {
+                    item.FullName = Strings[item.NameStr];
                 }
             }
         }
@@ -223,7 +264,7 @@ namespace D2Craft.Shared
                                 break;
                             case 15:
                                 //Fix
-                                str = mod.Min + "% to cast level " + mod.Max + " " + mod.Param;
+                                str = mod.Min + "% to cast level " + mod.Max + " " + mod.Param + " when hit";
                                 ignoreStr = true;
                                 break;
                             case 16:
