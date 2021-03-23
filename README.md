@@ -10,6 +10,7 @@ Created by madinsane, contact me on Discord if you find any issues (madinsane#83
 This site is hosted through GitHub Pages and uses Blazor ASP.Net, visit the site here: https://madinsane.github.io/D2Forge/
 
 Libraries used:
+
   https://github.com/loresoft/LoreSoft.Blazor.Controls - Simple library for a typeahead textbox
   https://github.com/JoshClose/CsvHelper - Library for parsing csv/tabbed text files which are used by Diablo II to store game data
 
