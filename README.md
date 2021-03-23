@@ -12,6 +12,7 @@ This site is hosted through GitHub Pages and uses Blazor ASP.Net, visit the site
 Libraries used:
 
   https://github.com/loresoft/LoreSoft.Blazor.Controls - Simple library for a typeahead textbox
+  
   https://github.com/JoshClose/CsvHelper - Library for parsing csv/tabbed text files which are used by Diablo II to store game data
 
 Diablo II is the property of Blizzard Entertainment, this project is fan made and not affiliated with them in any way
