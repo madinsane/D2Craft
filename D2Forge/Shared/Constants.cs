@@ -17,7 +17,10 @@ namespace D2Forge.Shared
             Strings,
             ExpStrings,
             PatchStrings,
-            Items
+            ItemShort,
+            Armor,
+            Weapons,
+            Misc
         }
     }
 }

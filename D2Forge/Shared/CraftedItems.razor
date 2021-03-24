@@ -13,9 +13,12 @@ else
     <div class="item-info col-md-12">
         <div class="search col-md-6" style="float:left">
             <LoreSoft.Blazor.Controls.Typeahead SearchMethod="@SearchItems"
-                               @bind-Value="@SelectedItem"
+                               TValue="ItemShort"
+                               TItem="ItemShort"
+                               Value="SelectedItem"
                                placeholder="Enter Item base..."
-                               @oninput="CalculateItemDetails">
+                               ValueChanged="SelectedItemChanged"
+                               ValueExpression="@(() => SelectedItem)">
                 <SelectedTemplate Context="item">
                     @item.FullName
                 </SelectedTemplate>
@@ -110,10 +113,16 @@ else
             stateContainer.DataFiles.Add(DataFileTypes.ExpStrings, expStrings);
             string patchStrings = await Http.GetStringAsync("data/patchstring.txt");
             stateContainer.DataFiles.Add(DataFileTypes.PatchStrings, patchStrings);
-            string items = await Http.GetStringAsync("data/Items.txt");
-            stateContainer.DataFiles.Add(DataFileTypes.Items, items);
+            string itemShort = await Http.GetStringAsync("data/ItemShort.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.ItemShort, itemShort);
+            string armors = await Http.GetStringAsync("data/Armor.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.Armor, armors);
+            string weapons = await Http.GetStringAsync("data/Weapons.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.Weapons, weapons);
+            string misc = await Http.GetStringAsync("data/Misc.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.Misc, misc);
             DataManager dataManager = new DataManager(stateContainer);
-            ItemEnumerable = dataManager.ItemDict.Values;
+            ItemEnumerable = dataManager.ItemsShort.Values;
             CurrentIlvl = 0;
             CurrentClvl = 0;
             NewIlvl = 0;
@@ -167,24 +176,30 @@ else
 
     public string Filter { get; set; }
 
-    public IEnumerable<Items> ItemEnumerable { get; set; }
+    public IEnumerable<ItemShort> ItemEnumerable { get; set; }
 
-    public Items SelectedItem { get; set; }
+    public ItemShort SelectedItem { get; set; }
     public int CurrentIlvl { get; set; }
     public int CurrentClvl { get; set; }
     public int NewIlvl { get; set; }
     public int NewAlvl { get; set; }
     public string NumAffixes { get; set; }
 
-    public Task<IEnumerable<Items>> SearchItems(string searchText)
+    public Task<IEnumerable<ItemShort>> SearchItems(string searchText)
     {
         var result = ItemEnumerable.Where(x => x.FullName.ToLower().Contains(searchText.ToLower())).ToList();
-        return Task.FromResult<IEnumerable<Items>>(result);
+        return Task.FromResult<IEnumerable<ItemShort>>(result);
+    }
+
+    private async Task SelectedItemChanged(ItemShort itemShort)
+    {
+        SelectedItem = itemShort;
+        CalculateItemDetails();
     }
 
     public void CalculateItemDetails()
     {
-        
+        bool skipAlvlCalcs = false;
         int ilvl = (int)(0.5f * CurrentClvl) + (int)(0.5f * CurrentIlvl);
         if (ilvl > 99)
         {
@@ -197,21 +212,31 @@ else
         } else
         {
             qlvl = SelectedItem.Qlvl;
+            if (SelectedItem.Mlvl.GetValueOrDefault() != 0)
+            {
+                NewAlvl = ilvl + SelectedItem.Mlvl.GetValueOrDefault();
+                NewAlvl = Math.Min(NewAlvl, 99);
+                skipAlvlCalcs = true;
+            }
         }
-        if (qlvl > ilvl)
+        if (!skipAlvlCalcs)
         {
-            ilvl = qlvl;
-        }
-        if (ilvl < (99 - (int)(qlvl / 2)))
-        {
-            NewAlvl = ilvl - (int)(qlvl / 2);
-        } else
-        {
-            NewAlvl = ilvl * 2 - 99;
-        }
-        if (NewAlvl < 0)
-        {
-            NewAlvl = 0;
+            if (qlvl > ilvl)
+            {
+                ilvl = qlvl;
+            }
+            if (ilvl < (99 - (int)(qlvl / 2)))
+            {
+                NewAlvl = ilvl - (int)(qlvl / 2);
+            }
+            else
+            {
+                NewAlvl = ilvl * 2 - 99;
+            }
+            if (NewAlvl < 0)
+            {
+                NewAlvl = 0;
+            }
         }
         NewIlvl = ilvl;
         if (ilvl <= 30)

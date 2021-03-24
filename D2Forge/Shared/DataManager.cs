@@ -19,8 +19,9 @@ namespace D2Forge.Shared
         public Dictionary<string, Properties> Properties { get; set; }
         public List<MagicAffix> Prefixes { get; set; }
         public List<MagicAffix> Suffixes { get; set; }
+        public Dictionary<string, Item> Items { get; set; }
         public Dictionary<string, string> Strings { get; set; }
-        public Dictionary<string, Items> ItemDict { get; set; }
+        public Dictionary<string, ItemShort> ItemsShort { get; set; }
         public Dictionary<string, string> TypeMap { get; set; }
         public StateContainer StateContainer { get; set; }
         public bool Loaded { get; set; }
@@ -37,7 +38,11 @@ namespace D2Forge.Shared
             CompilePropertyStats();
             Prefixes = ReadCsvToList<MagicAffix>(stateContainer.DataFiles[DataFileTypes.MagicPrefix]);
             Suffixes = ReadCsvToList<MagicAffix>(stateContainer.DataFiles[DataFileTypes.MagicSuffix]);
-            ItemDict = ReadCsvToDictItems(stateContainer.DataFiles[DataFileTypes.Items]);
+            Items = new Dictionary<string, Item>();
+            ReadItems(stateContainer.DataFiles[DataFileTypes.Armor]);
+            ReadItems(stateContainer.DataFiles[DataFileTypes.Weapons]);
+            ReadItems(stateContainer.DataFiles[DataFileTypes.Misc]);
+            ItemsShort = ReadCsvToDictItemsShort(stateContainer.DataFiles[DataFileTypes.ItemShort]);
             Strings = new Dictionary<string, string>();
             ReadStrings(stateContainer.DataFiles[DataFileTypes.PatchStrings]);
             ReadStrings(stateContainer.DataFiles[DataFileTypes.ExpStrings]);
@@ -77,12 +82,35 @@ namespace D2Forge.Shared
             Dictionary<string, ItemStatCost> dict = new Dictionary<string, ItemStatCost>();
             foreach (var record in records)
             {
-                if (!dict.ContainsKey(record.Stat))
+                if (!dict.ContainsKey(record.Stat) && !string.IsNullOrEmpty(record.Stat))
                 {
                     dict.Add(record.Stat, record);
                 }
             }
             return dict;
+        }
+
+        public void ReadItems(string file, bool hasHeader = true)
+        {
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                HasHeaderRecord = hasHeader,
+                Delimiter = "\t",
+                HeaderValidated = null,
+                MissingFieldFound = null
+            };
+            byte[] byteArray = Encoding.ASCII.GetBytes(file);
+            MemoryStream stream = new MemoryStream(byteArray);
+            using var reader = new StreamReader(stream);
+            using var csv = new CsvReader(reader, config);
+            var records = csv.GetRecords<Item>();
+            foreach (var record in records)
+            {
+                if (!Items.ContainsKey(record.Code) && !string.IsNullOrEmpty(record.Code))
+                {
+                    Items.Add(record.Code, record);
+                }
+            }
         }
 
         public static Dictionary<string, Properties> ReadCsvToDictProp(string file, bool hasHeader = true)
@@ -100,7 +128,7 @@ namespace D2Forge.Shared
             Dictionary<string, Properties> dict = new Dictionary<string, Properties>();
             foreach (var record in records)
             {
-                if (!dict.ContainsKey(record.Code))
+                if (!dict.ContainsKey(record.Code) && !string.IsNullOrEmpty(record.Code))
                 {
                     dict.Add(record.Code, record);
                 }
@@ -108,7 +136,7 @@ namespace D2Forge.Shared
             return dict;
         }
 
-        public static Dictionary<string, Items> ReadCsvToDictItems(string file, bool hasHeader = true)
+        public static Dictionary<string, ItemShort> ReadCsvToDictItemsShort(string file, bool hasHeader = true)
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
@@ -119,11 +147,11 @@ namespace D2Forge.Shared
             MemoryStream stream = new MemoryStream(byteArray);
             using var reader = new StreamReader(stream);
             using var csv = new CsvReader(reader, config);
-            var records = csv.GetRecords<Items>();
-            Dictionary<string, Items> dict = new Dictionary<string, Items>();
+            var records = csv.GetRecords<ItemShort>();
+            Dictionary<string, ItemShort> dict = new Dictionary<string, ItemShort>();
             foreach (var record in records)
             {
-                if (!dict.ContainsKey(record.NameStr))
+                if (!dict.ContainsKey(record.NameStr) && !string.IsNullOrEmpty(record.NameStr))
                 {
                     dict.Add(record.NameStr, record);
                 }
@@ -154,7 +182,7 @@ namespace D2Forge.Shared
 
         public void GetItemStrings()
         {
-            foreach (Items item in ItemDict.Values)
+            foreach (ItemShort item in ItemsShort.Values)
             {
                 if (string.IsNullOrEmpty(item.NameStr))
                 {
