@@ -29,7 +29,7 @@ namespace D2Forge
             if (dm != null)
             {
                 return dm.Recipes != null && dm.ISC != null && dm.Properties != null && dm.Prefixes != null && dm.Suffixes != null &&
-                    dm.Strings != null && dm.ItemsShort != null && dm.Items != null &&
+                    dm.Strings != null && dm.ItemsShort != null && dm.Items != null && dm.ItemTypes != null &&
                     dm.Loaded;
             }
             return false;

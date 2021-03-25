@@ -17,5 +17,19 @@ namespace D2Forge.Shared
         public int? Mlvl { get; set; }
         [Ignore]
         public string FullName { get; set; }
+        [Ignore]
+        public string FullNameWithType { get; set; }
+        [Ignore]
+        public bool IsType { get; set; }
+
+        public void Init(string nameStr, string fullName)
+        {
+            NameStr = nameStr;
+            Qlvl = 0;
+            Mlvl = 0;
+            FullName = fullName;
+            FullNameWithType = fullName + " (Type)";
+            IsType = true;
+        }
     }
 }

@@ -88,5 +88,11 @@ namespace D2Forge.Shared
         public int? Multiply { get; set; }
         [Name("add")]
         public int? Add { get; set; }
+        [Ignore]
+        public HashSet<ItemType> ValidTypes { get; set; }
+        [Ignore]
+        public string FullTypeString { get; set; }
+        [Ignore]
+        public List<Mod> Mods { get; set; }
     }
 }

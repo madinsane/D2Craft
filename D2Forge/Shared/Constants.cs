@@ -20,7 +20,8 @@ namespace D2Forge.Shared
             ItemShort,
             Armor,
             Weapons,
-            Misc
+            Misc,
+            ItemTypes
         }
     }
 }

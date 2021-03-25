@@ -94,7 +94,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        if (stateContainer.DataManager == null)
+        if (!stateContainer.IsDataLoaded())
         {
             stateContainer.DataFiles = new Dictionary<DataFileTypes, string>();
             string cubeMain = await Http.GetStringAsync("data/CubeMain.txt");
@@ -121,6 +121,8 @@ else
             stateContainer.DataFiles.Add(DataFileTypes.Weapons, weapons);
             string misc = await Http.GetStringAsync("data/Misc.txt");
             stateContainer.DataFiles.Add(DataFileTypes.Misc, misc);
+            string itemTypes = await Http.GetStringAsync("data/ItemTypes.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.ItemTypes, itemTypes);
             DataManager dataManager = new DataManager(stateContainer);
             ItemEnumerable = dataManager.ItemsShort.Values;
             CurrentIlvl = 0;
@@ -130,12 +132,6 @@ else
             NumAffixes = "40% chance for 1 affix, 20% chance each for 2, 3 or 4 affixes";
             stateContainer.DataManager = dataManager;
         }
-    }
-
-    private void ChangePropertyValue()
-    {
-        stateContainer.SetProperty($"New value set in Component 2: {DateTime.Now}");
-
     }
 
     public void Dispose()

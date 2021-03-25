@@ -1,0 +1,343 @@
+﻿@inject StateContainer stateContainer
+@inject HttpClient Http
+@implements IDisposable
+
+<h3 class="rare">Affixes</h3>
+
+@if (!stateContainer.IsDataLoaded())
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="item-info col-md-12">
+        <div class="search col-md-6">
+            <LoreSoft.Blazor.Controls.Typeahead SearchMethod="@SearchItems"
+                                                TValue="ItemShort"
+                                                TItem="ItemShort"
+                                                Value="SelectedItem"
+                                                placeholder="Enter Item type or base..."
+                                                ValueChanged="SelectedItemChanged"
+                                                ValueExpression="@(() => SelectedItem)">
+                <SelectedTemplate Context="item">
+                    @item.FullNameWithType
+                </SelectedTemplate>
+                <ResultTemplate Context="item">
+                    @item.FullNameWithType
+                </ResultTemplate>
+            </LoreSoft.Blazor.Controls.Typeahead>
+            <a style="color:#fff">Item Level: </a><input type="number" class="numinput" placeholder="Item Level" @bind-value="CurrentIlvl" @bind-value:event="oninput" /><br />
+            <input type="text" placeholder="Search Crafts..." @bind="Filter" @bind:event="oninput" />
+            <button @onclick="ToggleTypeCol">Toggle Types</button>
+        </div>
+    </div>
+    <br />
+    <h4 class="col-md-7">Prefixes</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Affix</th>
+                <th title="Affix Level Requirement (- Maximum affix level)">alvl</th>
+                <th title="Character Level Requirement (Class specific requirement)">clvl</th>
+                <th title="Weighted Frequency">Weight</th>
+                <th title="Mods from same group cannot be on one item">Group</th>
+                <th>Mods</th>
+                <th title="Valid item types" class="item-type-col" style="display:@ItemTypeColClass">Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var affix in stateContainer.DataManager.Prefixes)
+            {
+                if (!IsVisible(affix))
+                {
+                    continue;
+                }
+                <tr>
+                    @if (affix.Rare.GetValueOrDefault())
+                    {
+                        <td class="rare">@affix.Name</td>
+                    }
+                    else
+                    {
+                        <td class="magic">@affix.Name</td>
+                    }
+                    @if (affix.MaxLevel.GetValueOrDefault() != 0)
+                    {
+                        <td>@affix.Level - @affix.MaxLevel</td>
+                    }
+                    else
+                    {
+                        <td>@affix.Level</td>
+                    }
+                    @if (affix.ClassLevelReq.GetValueOrDefault() != 0)
+                    {
+                        <td>@affix.LevelReq (@affix.Class - @affix.ClassLevelReq)</td>
+                    }
+                    else
+                    {
+                        <td>@affix.LevelReq</td>
+                    }
+                    <td>@affix.Frequency</td>
+                    <td>@affix.Group</td>
+                    <td>
+                        @foreach (var mod in affix.Mods)
+                        {
+                            if (!string.IsNullOrEmpty(mod.Name))
+                            {
+                                @mod.FullMod<br />
+                            }
+                        }
+                    </td>
+                    <td class="item-type-col" style="display:@ItemTypeColClass">@affix.FullTypeString</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h4 class="col-md-7">Suffixes</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Affix</th>
+                <th title="Affix Level Requirement (- Maximum affix level)">alvl</th>
+                <th title="Character Level Requirement (Class specific requirement)">clvl</th>
+                <th title="Weighted Frequency">Weight</th>
+                <th title="Mods from same group cannot be on one item">Group</th>
+                <th>Mods</th>
+                <th title="Valid item types" class="item-type-col" style="display:@ItemTypeColClass">Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var affix in stateContainer.DataManager.Suffixes)
+            {
+                if (!IsVisible(affix))
+                {
+                    continue;
+                }
+                <tr>
+                    @if (affix.Rare.GetValueOrDefault())
+                    {
+                        <td class="rare">@affix.Name</td>
+                    }
+                    else
+                    {
+                        <td class="magic">@affix.Name</td>
+                    }
+                    @if (affix.MaxLevel.GetValueOrDefault() != 0)
+                    {
+                        <td>@affix.Level - @affix.MaxLevel</td>
+                    }
+                    else
+                    {
+                        <td>@affix.Level</td>
+                    }
+                    @if (affix.ClassLevelReq.GetValueOrDefault() != 0)
+                    {
+                        <td>@affix.LevelReq (@affix.Class - @affix.ClassLevelReq)</td>
+                    }
+                    else
+                    {
+                        <td>@affix.LevelReq</td>
+                    }
+                    <td>@affix.Frequency</td>
+                    <td>@affix.Group</td>
+                    <td>
+                        @foreach (var mod in affix.Mods)
+                        {
+                            if (!string.IsNullOrEmpty(mod.Name))
+                            {
+                                @mod.FullMod<br />
+                            }
+                        }
+                    </td>
+                    <td class="item-type-col" style="display:@ItemTypeColClass">@affix.FullTypeString</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        stateContainer.OnChange += StateHasChanged;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!stateContainer.IsDataLoaded())
+        {
+            stateContainer.DataFiles = new Dictionary<DataFileTypes, string>();
+            string cubeMain = await Http.GetStringAsync("data/CubeMain.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.CubeMain, cubeMain);
+            string itemStatCost = await Http.GetStringAsync("data/ItemStatCost.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.ItemStatCost, itemStatCost);
+            string magicPrefix = await Http.GetStringAsync("data/MagicPrefix.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.MagicPrefix, magicPrefix);
+            string magicSuffix = await Http.GetStringAsync("data/MagicSuffix.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.MagicSuffix, magicSuffix);
+            string properties = await Http.GetStringAsync("data/Properties.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.Properties, properties);
+            string strings = await Http.GetStringAsync("data/string.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.Strings, strings);
+            string expStrings = await Http.GetStringAsync("data/expansionstring.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.ExpStrings, expStrings);
+            string patchStrings = await Http.GetStringAsync("data/patchstring.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.PatchStrings, patchStrings);
+            string itemShort = await Http.GetStringAsync("data/ItemShort.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.ItemShort, itemShort);
+            string armors = await Http.GetStringAsync("data/Armor.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.Armor, armors);
+            string weapons = await Http.GetStringAsync("data/Weapons.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.Weapons, weapons);
+            string misc = await Http.GetStringAsync("data/Misc.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.Misc, misc);
+            string itemTypes = await Http.GetStringAsync("data/ItemTypes.txt");
+            stateContainer.DataFiles.Add(DataFileTypes.ItemTypes, itemTypes);
+            DataManager dataManager = new DataManager(stateContainer);
+            ItemEnumerable = dataManager.ItemAndTypeList;
+            CurrentIlvl = 0;
+            ItemTypeColClass = "none";
+            stateContainer.DataManager = dataManager;
+        }
+    }
+
+    public void Dispose()
+    {
+        stateContainer.OnChange -= StateHasChanged;
+    }
+
+    public bool IsVisible(MagicAffix affix)
+    {
+        if (!CheckIlvl(affix))
+        {
+            return false;
+        }
+        if (!CheckType(affix))
+        {
+            return false;
+        }
+        if (string.IsNullOrEmpty(Filter))
+        {
+            return true;
+        }
+        if (stateContainer.DataManager.Culture.CompareInfo.IndexOf(affix.Name, Filter, CompareOptions.IgnoreCase) >= 0)
+        {
+            return true;
+        }
+        if (stateContainer.DataManager.Culture.CompareInfo.IndexOf(affix.Group.GetValueOrDefault().ToString(), Filter, CompareOptions.IgnoreCase) >= 0)
+        {
+            return true;
+        }
+        if (!string.IsNullOrEmpty(affix.FullTypeString))
+        {
+            if (stateContainer.DataManager.Culture.CompareInfo.IndexOf(affix.FullTypeString, Filter, CompareOptions.IgnoreCase) >= 0)
+            {
+                return true;
+            }
+        }
+        foreach (var mod in affix.Mods)
+        {
+            if (stateContainer.DataManager.Culture.CompareInfo.IndexOf(mod.FullMod, Filter, CompareOptions.IgnoreCase) >= 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool CheckIlvl(MagicAffix affix)
+    {
+        if (affix.Level < CurrentIlvl || CurrentIlvl == 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool CheckType(MagicAffix affix)
+    {
+        var dm = stateContainer.DataManager;
+        if (SelectedItem == null)
+        {
+            return true;
+        }
+        if (string.IsNullOrEmpty(SelectedItem.FullName))
+        {
+            return true;
+        }
+        if (dm.Culture.CompareInfo.IndexOf(affix.FullTypeString, SelectedItem.FullName, CompareOptions.IgnoreCase) >= 0)
+        {
+            return true;
+        }
+        if (SelectedItem.IsType)
+        {
+            if (CheckIfTypeInSearch(SelectedItem.FullName, affix))
+            {
+                return true;
+            }
+        }
+        else
+        {
+            if (dm.Items.ContainsKey(SelectedItem.NameStr))
+            {
+                if (CheckIfTypeInSearch(dm.Items[SelectedItem.NameStr].Type1, affix))
+                {
+                    return true;
+                }
+                if (CheckIfTypeInSearch(dm.Items[SelectedItem.NameStr].Type2, affix))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool CheckIfTypeInSearch(string typeCode, MagicAffix affix)
+    {
+        var dm = stateContainer.DataManager;
+        HashSet<ItemType> validTypes = dm.GetValidItemTypes(typeCode);
+        foreach (var type in validTypes)
+        {
+            if (dm.Culture.CompareInfo.IndexOf(affix.FullTypeString, dm.GetTypeFromMap(type.Code), CompareOptions.IgnoreCase) >= 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void ToggleTypeCol()
+    {
+        if (ItemTypeColClass == "normal")
+        {
+            ItemTypeColClass = "none";
+        }
+        else
+        {
+            ItemTypeColClass = "normal";
+        }
+    }
+
+    public string Filter { get; set; }
+
+    public IEnumerable<ItemShort> ItemEnumerable { get; set; }
+
+    public ItemShort SelectedItem { get; set; }
+    public int CurrentIlvl { get; set; }
+    public string ItemTypeColClass { get; set; }
+
+    public Task<IEnumerable<ItemShort>> SearchItems(string searchText)
+    {
+        var result = ItemEnumerable.Where(x => x.FullName.ToLower().Contains(searchText.ToLower())).ToList();
+        return Task.FromResult<IEnumerable<ItemShort>>(result);
+    }
+
+    private async Task SelectedItemChanged(ItemShort itemShort)
+    {
+        SelectedItem = itemShort;
+
+        //CalculateItemDetails();
+    }
+
+}
