@@ -296,14 +296,14 @@ else
     public bool CheckIfTypeInSearch(string typeCode, MagicAffix affix)
     {
         var dm = stateContainer.DataManager;
-        HashSet<ItemType> validTypes = dm.GetValidItemTypes(typeCode);
-        foreach (var type in validTypes)
-        {
-            if (dm.Culture.CompareInfo.IndexOf(affix.FullTypeString, dm.GetTypeFromMap(type.Code), CompareOptions.IgnoreCase) >= 0)
+        //HashSet<ItemType> validTypes = dm.GetValidItemTypes(typeCode);
+        //foreach (var type in validTypes)
+        //{
+            if (dm.Culture.CompareInfo.IndexOf(affix.FullTypeString, dm.GetTypeFromMap(typeCode), CompareOptions.IgnoreCase) >= 0)
             {
                 return true;
             }
-        }
+        //}
         return false;
     }
 
