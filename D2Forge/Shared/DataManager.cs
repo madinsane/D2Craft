@@ -17,6 +17,7 @@ namespace D2Forge.Shared
 
         public List<CubeMain> Recipes { get; set; }
         public Dictionary<string, ItemStatCost> ISC { get; set; }
+        public Dictionary<string, ItemStatCost> ISCGroups { get; set; }
         public Dictionary<string, Properties> Properties { get; set; }
         public List<MagicAffix> Prefixes { get; set; }
         public List<MagicAffix> Suffixes { get; set; }
@@ -56,6 +57,7 @@ namespace D2Forge.Shared
             ReadStrings(stateContainer.DataFiles[DataFileTypes.Strings]);
             ConvertRecipes();
             GetItemStrings();
+            CheckPropGroups();
             SetupAffixItemTypes(Prefixes);
             SetupAffixItemTypes(Suffixes);
             PrepareAffixMods(Prefixes);
@@ -366,6 +368,72 @@ namespace D2Forge.Shared
             return true;
         }
 
+        public void CheckPropGroups()
+        {
+            if (ISCGroups == null)
+            {
+                InitISCGroups(ISC);
+            }
+            foreach (var prop in Properties.Values) {
+                if (prop.Code == "res-fire")
+                {
+                    int test = 0;
+                }
+                Dictionary<string, int> stats = prop.Stats;
+                List<int> groups = new List<int>();
+                foreach (var stat in stats.Keys)
+                {
+                    if (ISCGroups.ContainsKey(stat))
+                    {
+                        groups.Add(ISCGroups[stat].DescGroup.GetValueOrDefault());
+                    }
+                }
+                if (groups.Count > 0)
+                {
+                    foreach (var group in groups)
+                    {
+                        CheckPropGroup(prop, group);
+                    }
+                }
+            }
+        }
+
+        private void CheckPropGroup(Properties prop, int group)
+        {
+            var fullGroup = ISCGroups.Where(x => x.Value.DescGroup == group).ToList();
+            var tempStats = prop.Stats;
+            bool isFullGroup = false;
+            for (int i = 0; i < fullGroup.Count; i++)
+            {
+                if (!tempStats.ContainsKey(fullGroup[i].Key))
+                {
+                    return;
+                } else
+                {
+                    if (i == fullGroup.Count - 1)
+                    {
+                        isFullGroup = true;
+                    }
+                }
+            }
+            if (isFullGroup)
+            {
+                prop.Stats = tempStats;
+                for (int i = 0; i < fullGroup.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        tempStats[fullGroup[i].Key] = 2;
+                    }
+                    else
+                    {
+                        tempStats[fullGroup[i].Key] = 1;
+                    }
+                }
+            }
+            return;
+        }
+
         public List<Mod> GetStringFromMod(Mod mod)
         {
             List<Mod> returnList = new List<Mod>();
@@ -377,26 +445,53 @@ namespace D2Forge.Shared
             if (Properties.ContainsKey(mod.Name))
             {
                 Properties prop = Properties[mod.Name];
-                List<string> stats = prop.Stats;
+                Dictionary<string, int> stats = prop.Stats;
                 foreach (var stat in stats)
                 {
-                    //Get Mod from ItemStatCost
-                    if (ISC.ContainsKey(stat))
+                    if (stat.Value == 1)
                     {
-                        ItemStatCost isc = ISC[stat];
+                        continue;
+                    }
+                    //Get Mod from ItemStatCost
+                    if (ISC.ContainsKey(stat.Key))
+                    {
+                        ItemStatCost isc = ISC[stat.Key];
                         //Get String for mod
                         string str;
                         if (mod.Max >= 0)
                         {
-                            str = GetStringFromDesc(isc.DescStrPos);
+                            if (stat.Value == 2)
+                            {
+                                str = GetStringFromDesc(isc.DescGroupStrPos);
+                            } else
+                            {
+                                str = GetStringFromDesc(isc.DescStrPos);
+                            }
                         } else
                         {
-                            str = GetStringFromDesc(isc.DescStrNeg);
+                            if (stat.Value == 2)
+                            {
+                                str = GetStringFromDesc(isc.DescGroupStrNeg);
+                            }
+                            else
+                            {
+                                str = GetStringFromDesc(isc.DescStrNeg);
+                            }
                         }
                         string str2 = "";
-                        if (isc.DescStr2 != null && isc.DescStr2 != "")
+                        if (stat.Value == 2)
                         {
-                            str2 = GetStringFromDesc(isc.DescStr2);
+                            if (isc.DescGroupStr2 != null && isc.DescGroupStr2 != "")
+                            {
+                                str2 = GetStringFromDesc(isc.DescGroupStr2);
+                            }
+                        }
+                        else
+                        {
+                            if (isc.DescStr2 != null && isc.DescStr2 != "")
+                            {
+                                str2 = GetStringFromDesc(isc.DescStr2);
+                            }
                         }
                         string value = "(" + mod.Min + "-" + mod.Max + ")";
                         if (mod.Min == mod.Max)
@@ -407,7 +502,15 @@ namespace D2Forge.Shared
                         int newMax;
                         bool ignoreStr = false;
                         bool useStr2 = false;
-                        switch (isc.DescFunc.GetValueOrDefault())
+                        int switchVal;
+                        if (stat.Value == 2)
+                        {
+                            switchVal = isc.DescGroupFunc.GetValueOrDefault();
+                        } else
+                        {
+                            switchVal = isc.DescFunc.GetValueOrDefault();
+                        }
+                        switch (switchVal)
                         {
                             case 12:
                             case 1:
@@ -499,6 +602,10 @@ namespace D2Forge.Shared
                                 str = "Level " + value + " " + mod.Param + " Aura When Equipped";
                                 ignoreStr = true;
                                 break;
+                            case 19:
+                                str = str.Replace("%d", value);
+                                ignoreStr = true;
+                                break;
                             case 20:
                                 value = "-" + value + "%";
                                 break;
@@ -538,12 +645,27 @@ namespace D2Forge.Shared
                         }
                         if (!ignoreStr)
                         {
-                            if (isc.DescVal.GetValueOrDefault() == 1)
+                            if (stat.Value == 2)
                             {
-                                str = value + " " + str;
-                            } else if (isc.DescVal.GetValueOrDefault() == 2)
+                                if (isc.DescGroupVal.GetValueOrDefault() == 1)
+                                {
+                                    str = value + " " + str;
+                                }
+                                else if (isc.DescGroupVal.GetValueOrDefault() == 2)
+                                {
+                                    str += " " + value;
+                                }
+                            }
+                            else
                             {
-                                str += " " + value;
+                                if (isc.DescVal.GetValueOrDefault() == 1)
+                                {
+                                    str = value + " " + str;
+                                }
+                                else if (isc.DescVal.GetValueOrDefault() == 2)
+                                {
+                                    str += " " + value;
+                                }
                             }
                             if (useStr2)
                             {
@@ -567,7 +689,10 @@ namespace D2Forge.Shared
         {
             if (Strings.ContainsKey(desc))
             {
-                return RemoveBetween(Strings[desc], '\\', ';');
+                string str = Strings[desc];
+                str = RemoveBetween(str, '\\', ';');
+                str = str.Replace("\\n", string.Empty);
+                return str;
             } else
             {
                 return "";
@@ -653,7 +778,7 @@ namespace D2Forge.Shared
         {
             foreach (var property in Properties.Values)
             {
-                property.Stats = new List<string>();
+                property.Stats = new Dictionary<string, int>();
                 AddIfNotBlank(property.Stats, property.Stat1);
                 AddIfNotBlank(property.Stats, property.Stat2);
                 AddIfNotBlank(property.Stats, property.Stat3);
@@ -664,11 +789,11 @@ namespace D2Forge.Shared
             }
         }
 
-        public static void AddIfNotBlank(List<string> list, string str)
+        public static void AddIfNotBlank(Dictionary<string, int> list, string str)
         {
             if (!string.IsNullOrEmpty(str))
             {
-                list.Add(str);
+                list.Add(str, 0);
             }
         }
 
@@ -681,6 +806,18 @@ namespace D2Forge.Shared
                 var itemShort = new ItemShort();
                 itemShort.Init(type.Code, GetTypeFromMap(type.Code));
                 ItemAndTypeList.Add(itemShort);
+            }
+        }
+
+        public void InitISCGroups(Dictionary<string, ItemStatCost> iscDict)
+        {
+            ISCGroups = new Dictionary<string, ItemStatCost>();
+            foreach (var isc in iscDict.Values)
+            {
+                if (isc.DescGroup.GetValueOrDefault() != 0)
+                {
+                    ISCGroups.Add(isc.Stat, isc);
+                }
             }
         }
 

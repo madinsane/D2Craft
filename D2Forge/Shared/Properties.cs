@@ -27,6 +27,6 @@ namespace D2Forge.Shared
         [Name("stat7")]
         public string Stat7 { get; set; }
         [Ignore]
-        public List<string> Stats { get; set; }
+        public Dictionary<string, int> Stats { get; set; }
     }
 }
