@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static D2Forge.Shared.Constants;
 
@@ -25,6 +26,8 @@ namespace D2Forge.Shared
         public Dictionary<string, ItemShort> ItemsShort { get; set; }
         public Dictionary<string, ItemType> ItemTypes { get; set; }
         public Dictionary<string, string> TypeMap { get; set; }
+        public Dictionary<int, string> ClassMap { get; set; }
+        public Dictionary<int, string> SkillTabMap { get; set; }
         public StateContainer StateContainer { get; set; }
         public bool Loaded { get; set; }
         public CultureInfo Culture { get; set; }
@@ -91,7 +94,7 @@ namespace D2Forge.Shared
             var list = new List<MagicAffix>();
             foreach (var record in records)
             {
-                if (!string.IsNullOrEmpty(record.Name) && record.Spawnable.GetValueOrDefault())
+                if (!string.IsNullOrEmpty(record.Name) && record.Spawnable.GetValueOrDefault() && record.Frequency.GetValueOrDefault() != 0)
                 {
                     list.Add(record);
                 }
@@ -363,16 +366,18 @@ namespace D2Forge.Shared
             return true;
         }
 
-        public void GetStringFromMod(Mod mod)
+        public List<Mod> GetStringFromMod(Mod mod)
         {
+            List<Mod> returnList = new List<Mod>();
             if (mod.FullMod != "")
             {
-                return;
+                return null;
             }
             //Get Mods from Property
             if (Properties.ContainsKey(mod.Name))
             {
-                List<string> stats = Properties[mod.Name].Stats;
+                Properties prop = Properties[mod.Name];
+                List<string> stats = prop.Stats;
                 foreach (var stat in stats)
                 {
                     //Get Mod from ItemStatCost
@@ -401,6 +406,7 @@ namespace D2Forge.Shared
                         int newMin;
                         int newMax;
                         bool ignoreStr = false;
+                        bool useStr2 = false;
                         switch (isc.DescFunc.GetValueOrDefault())
                         {
                             case 12:
@@ -422,24 +428,24 @@ namespace D2Forge.Shared
                                 break;
                             case 6:
                                 value = "+" + value;
-                                str += str2;
+                                useStr2 = true;
                                 break;
                             case 7:
                                 value += "%";
-                                str += str2;
+                                useStr2 = true;
                                 break;
                             case 8:
                                 value = "+" + value + "%";
-                                str += str2;
+                                useStr2 = true;
                                 break;
                             case 9:
-                                str += str2;
+                                useStr2 = true;
                                 break;
                             case 10:
                                 newMin = (mod.Min * 100) / 128;
                                 newMax = (mod.Max * 100) / 128;
                                 value = "(" + newMin + "-" + newMax + ")%";
-                                str += str2;
+                                useStr2 = true;
                                 break;
                             case 11:
                                 mod.Min = Math.Max(mod.Min, 1);
@@ -451,18 +457,42 @@ namespace D2Forge.Shared
                                 str = "Repairs 1 Durability In " + value + " Seconds";
                                 break;
                             case 13:
-                                //Fix
-                                str = "+" + value + " to class Skill Levels";
+                                if (ClassMap == null)
+                                {
+                                    InitClassMap();
+                                }
+                                if (ClassMap.ContainsKey(prop.Val1.GetValueOrDefault()))
+                                {
+                                    str = "+" + value + " to " + ClassMap[prop.Val1.GetValueOrDefault()] + " Skill Levels";
+                                } else
+                                {
+                                    str = "+" + value + " to Unknown Class Skill Levels";
+                                }
                                 ignoreStr = true;
                                 break;
                             case 14:
-                                //Fix
-                                str = "+" + value + " to tab Skill Levels ([class] Only)";
+                                if (SkillTabMap == null)
+                                {
+                                    InitSkillTabMap();
+                                }
+                                int tabId;
+                                if (int.TryParse(mod.Param, out tabId))
+                                {
+                                    if (SkillTabMap.ContainsKey(tabId))
+                                    {
+                                        str = "+" + value + " to " + SkillTabMap[tabId];
+                                    }
+                                }
+                                else
+                                {
+                                    str = "+" + value + " to Unknown Tab Levels";
+                                }
                                 ignoreStr = true;
                                 break;
                             case 15:
-                                //Fix
-                                str = mod.Min + "% to cast level " + mod.Max + " " + mod.Param + " when hit";
+                                str = str.Replace("%d%%", mod.Min.ToString() + "%");
+                                str = str.Replace("%d", mod.Max.ToString());
+                                str = str.Replace("%s", mod.Param);
                                 ignoreStr = true;
                                 break;
                             case 16:
@@ -480,7 +510,8 @@ namespace D2Forge.Shared
                                 value += "%";
                                 break;
                             case 24:
-                                //Fix
+                                str = "Level " + Math.Abs(mod.Max) + " " + mod.Param + " " + str.Replace("%d", Math.Abs(mod.Min).ToString());
+                                ignoreStr = true;
                                 break;
                             case 27:
                                 //Fix
@@ -491,6 +522,16 @@ namespace D2Forge.Shared
                             case 28:
                                 value = "+" + value;
                                 str = value + " to " + mod.Param;
+                                ignoreStr = true;
+                                break;
+                            case 29:
+                                if (string.IsNullOrEmpty(mod.Param))
+                                {
+                                    str = "Sockets " + value;
+                                } else
+                                {
+                                    str = "Sockets (" + mod.Param + ")";
+                                }
                                 ignoreStr = true;
                                 break;
 
@@ -504,11 +545,21 @@ namespace D2Forge.Shared
                             {
                                 str += " " + value;
                             }
+                            if (useStr2)
+                            {
+                                str += " " + str2;
+                            }
                         }
                         mod.FullMod = str;
+                        var newMod = new Mod(mod.Name, mod.Param, mod.Min, mod.Max)
+                        {
+                            FullMod = mod.FullMod
+                        };
+                        returnList.Add(newMod);
                     }
                 }
             }
+            return returnList;
             //mod.FullMod = mod.Name + " (" + mod.Min + "-" + mod.Max + ")";
         }
 
@@ -516,11 +567,17 @@ namespace D2Forge.Shared
         {
             if (Strings.ContainsKey(desc))
             {
-                return Strings[desc];
+                return RemoveBetween(Strings[desc], '\\', ';');
             } else
             {
                 return "";
             }
+        }
+
+        public string RemoveBetween(string s, char begin, char end)
+        {
+            Regex regex = new Regex(string.Format("\\{0}.*?\\{1}", begin, end));
+            return regex.Replace(s, string.Empty);
         }
 
         public void ConvertRecipes()
@@ -538,15 +595,19 @@ namespace D2Forge.Shared
                 recipe.InputNames[0] = GetTypeFromMap(recipe.Input2);
                 recipe.InputNames[1] = GetTypeFromMap(recipe.Input3);
                 recipe.InputNames[2] = GetTypeFromMap(recipe.Input4);
-                recipe.Mods = new Mod[4];
-                recipe.Mods[0] = new Mod(recipe.Mod1, recipe.Mod1Param, recipe.Mod1Min.GetValueOrDefault(), recipe.Mod1Max.GetValueOrDefault());
-                recipe.Mods[1] = new Mod(recipe.Mod2, recipe.Mod2Param, recipe.Mod2Min.GetValueOrDefault(), recipe.Mod2Max.GetValueOrDefault());
-                recipe.Mods[2] = new Mod(recipe.Mod3, recipe.Mod3Param, recipe.Mod3Min.GetValueOrDefault(), recipe.Mod3Max.GetValueOrDefault());
-                recipe.Mods[3] = new Mod(recipe.Mod4, recipe.Mod4Param, recipe.Mod4Min.GetValueOrDefault(), recipe.Mod4Max.GetValueOrDefault());
+                recipe.Mods = new List<Mod>
+                {
+                    new Mod(recipe.Mod1, recipe.Mod1Param, recipe.Mod1Min.GetValueOrDefault(), recipe.Mod1Max.GetValueOrDefault()),
+                    new Mod(recipe.Mod2, recipe.Mod2Param, recipe.Mod2Min.GetValueOrDefault(), recipe.Mod2Max.GetValueOrDefault()),
+                    new Mod(recipe.Mod3, recipe.Mod3Param, recipe.Mod3Min.GetValueOrDefault(), recipe.Mod3Max.GetValueOrDefault()),
+                    new Mod(recipe.Mod4, recipe.Mod4Param, recipe.Mod4Min.GetValueOrDefault(), recipe.Mod4Max.GetValueOrDefault())
+                };
+                var newMods = new List<Mod>();
                 foreach (var mod in recipe.Mods)
                 {
-                    GetStringFromMod(mod);
+                    newMods.AddRange(GetStringFromMod(mod));
                 }
+                recipe.Mods = newMods;
             }
         }
 
@@ -579,10 +640,12 @@ namespace D2Forge.Shared
                     new Mod(affix.Mod2Code, affix.Mod2Param, affix.Mod2Min.GetValueOrDefault(), affix.Mod2Max.GetValueOrDefault()),
                     new Mod(affix.Mod3Code, affix.Mod3Param, affix.Mod3Min.GetValueOrDefault(), affix.Mod3Max.GetValueOrDefault())
                 };
+                var newMods = new List<Mod>();
                 foreach (var mod in affix.Mods)
                 {
-                    GetStringFromMod(mod);
+                    newMods.AddRange(GetStringFromMod(mod));
                 }
+                affix.Mods = newMods;
             }
         }
 
@@ -619,6 +682,48 @@ namespace D2Forge.Shared
                 itemShort.Init(type.Code, GetTypeFromMap(type.Code));
                 ItemAndTypeList.Add(itemShort);
             }
+        }
+
+        public void InitClassMap()
+        {
+            ClassMap = new Dictionary<int, string>
+            {
+                { 0, "Amazon" },
+                { 1, "Sorceress" },
+                { 2, "Necromancer" },
+                { 3, "Paladin" },
+                { 4, "Barbarian" },
+                { 5, "Druid" },
+                { 6, "Assassin" }
+            };
+        }
+
+        public void InitSkillTabMap()
+        {
+            SkillTabMap = new Dictionary<int, string>
+            {
+                { 0, "Bow and Crossbow Skills (Amazon Only)" },
+                { 1, "Passive and Magic Skills (Amazon Only)" },
+                { 2, "Javelin and Spear Skills (Amazon Only)" },
+                { 3, "Fire Spells (Sorceress Only)" },
+                { 4, "Lightning Spells (Sorceress Only)" },
+                { 5, "Cold Spells (Sorceress Only)" },
+                { 6, "Curses (Necromancer Only)" },
+                { 7, "Poison and Bone Spells (Necromancer Only)" },
+                { 8, "Summoning Spells (Necromancer Only)" },
+                { 9, "Combat Skills (Paladin Only)" },
+                { 10, "Offensive Auras (Paladin Only)" },
+                { 11, "Defensive Auras (Paladin Only)" },
+                { 12, "Combat Skills (Barbarian Only)" },
+                { 13, "Masteries (Barbarian Only)" },
+                { 14, "Warcries (Barbarian Only)" },
+                { 15, "Summoning Skills (Druid Only)" },
+                { 16, "Shape Shifting (Druid Only)" },
+                { 17, "Elemental Skills (Druid Only)" },
+                { 18, "Traps (Assassin Only)" },
+                { 19, "Shadow Disciplines (Assassin Only)" },
+                { 20, "Martial Arts (Assassin Only)" },
+            };
         }
 
         public void InitTypeMap()

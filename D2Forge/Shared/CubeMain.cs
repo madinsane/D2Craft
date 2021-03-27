@@ -62,6 +62,6 @@ namespace D2Forge.Shared
         [Ignore]
         public string[] InputNames { get; set; }
         [Ignore]
-        public Mod[] Mods { get; set; }
+        public List<Mod> Mods { get; set; }
     }
 }
