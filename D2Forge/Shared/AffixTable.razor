@@ -293,16 +293,31 @@ else
         return false;
     }
 
+    //This function can't distinguish between types that contain other types in the string such as "Body Armor" and "Armor"
     public bool CheckIfTypeInSearch(string typeCode, MagicAffix affix)
     {
+        if (string.IsNullOrEmpty(typeCode))
+        {
+            return false;
+        }
         var dm = stateContainer.DataManager;
+        string type = dm.GetTypeFromMap(typeCode);
         //HashSet<ItemType> validTypes = dm.GetValidItemTypes(typeCode);
         //foreach (var type in validTypes)
         //{
-            if (dm.Culture.CompareInfo.IndexOf(affix.FullTypeString, dm.GetTypeFromMap(typeCode), CompareOptions.IgnoreCase) >= 0)
+        if (string.IsNullOrEmpty(type))
+        {
+            if (dm.Culture.CompareInfo.IndexOf(affix.FullTypeString, typeCode, CompareOptions.IgnoreCase) >= 0)
             {
                 return true;
             }
+        } else
+        {
+            if (dm.Culture.CompareInfo.IndexOf(affix.FullTypeString, type, CompareOptions.IgnoreCase) >= 0)
+            {
+                return true;
+            }
+        }
         //}
         return false;
     }
