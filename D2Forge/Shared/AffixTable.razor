@@ -82,7 +82,7 @@ else
                     <td>
                         @foreach (var mod in affix.Mods)
                         {
-                            if (!string.IsNullOrEmpty(mod.Name))
+                            if (!string.IsNullOrEmpty(mod.Name) && !string.IsNullOrEmpty(mod.FullMod))
                             {
                                 @mod.FullMod<br />
                             }

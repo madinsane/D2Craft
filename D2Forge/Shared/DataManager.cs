@@ -29,6 +29,7 @@ namespace D2Forge.Shared
         public Dictionary<string, string> TypeMap { get; set; }
         public Dictionary<int, string> ClassMap { get; set; }
         public Dictionary<int, string> SkillTabMap { get; set; }
+        public List<string> PropOverrideList { get; set; }
         public StateContainer StateContainer { get; set; }
         public bool Loaded { get; set; }
         public CultureInfo Culture { get; set; }
@@ -375,10 +376,6 @@ namespace D2Forge.Shared
                 InitISCGroups(ISC);
             }
             foreach (var prop in Properties.Values) {
-                if (prop.Code == "res-fire")
-                {
-                    int test = 0;
-                }
                 Dictionary<string, int> stats = prop.Stats;
                 List<int> groups = new List<int>();
                 foreach (var stat in stats.Keys)
@@ -441,6 +438,16 @@ namespace D2Forge.Shared
             {
                 return null;
             }
+            if (PropOverrideList == null)
+            {
+                InitPropOverrideList();
+            }
+            //Override hardcoded functions
+            if (PropOverrideList.Contains(mod.Name))
+            {
+                returnList.Add(GetStringFromDescOverride(mod));
+                return returnList;
+            }
             //Get Mods from Property
             if (Properties.ContainsKey(mod.Name))
             {
@@ -498,8 +505,8 @@ namespace D2Forge.Shared
                         {
                             value = mod.Max.ToString();
                         }
-                        int newMin;
-                        int newMax;
+                        float newMin;
+                        float newMax;
                         bool ignoreStr = false;
                         bool useStr2 = false;
                         int switchVal;
@@ -631,16 +638,6 @@ namespace D2Forge.Shared
                                 str = value + " to " + mod.Param;
                                 ignoreStr = true;
                                 break;
-                            case 29:
-                                if (string.IsNullOrEmpty(mod.Param))
-                                {
-                                    str = "Sockets " + value;
-                                } else
-                                {
-                                    str = "Sockets (" + mod.Param + ")";
-                                }
-                                ignoreStr = true;
-                                break;
 
                         }
                         if (!ignoreStr)
@@ -682,7 +679,6 @@ namespace D2Forge.Shared
                 }
             }
             return returnList;
-            //mod.FullMod = mod.Name + " (" + mod.Min + "-" + mod.Max + ")";
         }
 
         public string GetStringFromDesc(string desc)
@@ -699,7 +695,71 @@ namespace D2Forge.Shared
             }
         }
 
-        public string RemoveBetween(string s, char begin, char end)
+        public static Mod GetStringFromDescOverride(Mod mod)
+        {
+            string str = "";
+            string value = "(" + mod.Min + "-" + mod.Max + ")";
+            if (mod.Min == mod.Max)
+            {
+                value = mod.Max.ToString();
+            }
+            float length;
+            switch (mod.Name)
+            {
+                //Sockets display
+                case "sock":
+                    if (string.IsNullOrEmpty(mod.Param))
+                    {
+                        str = "Sockets " + value;
+                    }
+                    else
+                    {
+                        str = "Sockets (" + mod.Param + ")";
+                    }
+                    break;
+                //Fire damage
+                case "dmg-fire":
+                    str = "Adds " + value + " fire damage";
+                    break;
+                //Cold damage
+                case "dmg-cold":
+                    if (!float.TryParse(mod.Param, out length))
+                    {
+                        length = 0;
+                    } else
+                    {
+                        length /= 25;
+                    }
+                    str = "Adds " + value + " cold damage (" + length + " seconds)";
+                    break;
+                //Lightning damage
+                case "dmg-ltng":
+                    str = "Adds " + value + " lightning damage";
+                    break;
+                //Poison damage
+                case "dmg-pois":
+                    if (!float.TryParse(mod.Param, out length))
+                    {
+                        length = 0;
+                    }
+                    int damage = (int)(((float)mod.Max / 256) * length);
+                    str = "Adds " + damage + " poison damage over " + (int)(length / 25) + " seconds";
+                    break;
+                //Magic damage
+                case "dmg-mag":
+                    str = "Adds " + value + " magic damage";
+                    break;
+                //Phys damage
+                case "dmg-norm":
+                case "dmg-throw":
+                    str = "Adds " + value + " damage";
+                    break;
+            }
+            mod.FullMod = str;
+            return mod;
+        }
+
+        public static string RemoveBetween(string s, char begin, char end)
         {
             Regex regex = new Regex(string.Format("\\{0}.*?\\{1}", begin, end));
             return regex.Replace(s, string.Empty);
@@ -832,6 +892,21 @@ namespace D2Forge.Shared
                 { 4, "Barbarian" },
                 { 5, "Druid" },
                 { 6, "Assassin" }
+            };
+        }
+
+        public void InitPropOverrideList()
+        {
+            PropOverrideList = new List<string>
+            {
+                "sock",
+                "dmg-fire",
+                "dmg-ltng",
+                "dmg-mag",
+                "dmg-cold",
+                "dmg-pois",
+                "dmg-throw",
+                "dmg-norm"
             };
         }
 

@@ -74,7 +74,7 @@ else
                 <td class="crafted">
                     @for (int i = 0; i < recipe.Mods.Count; i++)
                     {
-                        if (recipe.Mods[i].FullMod != "")
+                        if (!string.IsNullOrEmpty(recipe.Mods[i].Name) && !string.IsNullOrEmpty(recipe.Mods[i].FullMod))
                         {
                             @recipe.Mods[i].FullMod<br/>
                         }
