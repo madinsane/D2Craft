@@ -1,41 +1,108 @@
 Stat	ID	descpriority	descfunc	descval	descstrpos	descstrneg	descstr2	dgrp	dgrpfunc	dgrpval	dgrpstrpos	dgrpstrneg	dgrpstr2
+corruptor	361	253	0	0	StrCorruptNum	StrCorruptNum							
 strength	0	67	1	1	ModStr1a	ModStr1a		1	1	1	Moditem2allattrib	Moditem2allattrib	
 energy	1	61	1	1	ModStr1d	ModStr1d		1	1	1	Moditem2allattrib	Moditem2allattrib	
 dexterity	2	65	1	1	ModStr1b	ModStr1b		1	1	1	Moditem2allattrib	Moditem2allattrib	
 vitality	3	63	1	1	ModStr1c	ModStr1c		1	1	1	Moditem2allattrib	Moditem2allattrib	
-statpts	4												
-newskills	5												
-hitpoints	6												
 maxhp	7	59	1	1	ModStr1u	ModStr1u							
-mana	8												
 maxmana	9	55	1	1	ModStr1e	ModStr1e							
-stamina	10												
 maxstamina	11	51	1	1	ModStr5d	ModStr5d							
-level	12												
-experience	13												
-gold	14												
-goldbank	15												
-item_armor_percent	16	74	4	1	Modstr2v	Modstr2v							
-item_maxdamage_percent	17	129	3	0	ModStr2j	ModStr2j							
-item_mindamage_percent	18	130	3	0	ModStr2k	ModStr2k							
 tohit	19	115	1	1	ModStr1h	ModStr1h							
-toblock	20	134	2	1	ModStr3g	ModStr3g							
 mindamage	21	127	1	1	ModStr1g	ModStr1g							
 maxdamage	22	126	1	1	ModStr1f	ModStr1f							
 secondary_mindamage	23	124	1	1	ModStr1g	ModStr1g							
 secondary_maxdamage	24	123	1	1	ModStr1f	ModStr1f							
-damagepercent	25	130	4	1	strModEnhancedDamage	strModEnhancedDamage							
-manarecovery	26												
-manarecoverybonus	27	52	2	2	ModStr4g	ModStr4g							
-staminarecoverybonus	28	48	2	2	ModStr3v	ModStr3v							
-lastexp	29												
-nextexp	30												
 armorclass	31	71	1	1	ModStr1i	ModStr1i							
 armorclass_vs_missile	32	69	1	1	ModStr6a	ModStr6a							
 armorclass_vs_hth	33	70	1	1	ModStr6b	ModStr6b							
+firemindam	48	102	1	1	ModStr1p	ModStr1p							
+firemaxdam	49	101	1	1	ModStr1o	ModStr1o							
+lightmindam	50	99	1	1	ModStr1r	ModStr1r							
+lightmaxdam	51	98	1	1	ModStr1q	ModStr1q							
+magicmindam	52	104	1	1	strModMagicDamage	strModMagicDamage							
+magicmaxdam	53	103	1	1	strModMagicDamage	strModMagicDamage							
+coldmindam	54	96	1	1	ModStr1t	ModStr1t							
+coldmaxdam	55	95	1	1	ModStr1s	ModStr1s							
+poisonmindam	57	92	1	1	ModStr4i	ModStr4i							
+poisonmaxdam	58	91	1	1	ModStr4h	ModStr4h							
+hpregen	74	56	1	2	ModStr2l	ModStr2w							
+item_healafterkill	86	16	1	1	ModitemHPaK	ModitemHPaK							
+item_lightradius	89	6	1	1	ModStr3f	ModStr3f							
+item_normaldamage	111	122	1	2	ModStr5b	ModStr5b							
+item_damagetargetac	120	75	1	1	ModStr4d	ModStr4d							
+item_demon_tohit	123	110	1	1	ModStr4j	ModStr4j							
+item_undead_tohit	124	106	1	1	ModStr4k	ModStr4k							
+item_allskills	127	158	1	1	ModStr3k	ModStr3k							
+item_kickdamage	137	121	1	1	ModStr5e	ModStr5e							
+item_manaafterkill	138	16	1	1	ModStr5f	ModStr5f							
+item_healafterdemonkill	139	15	1	1	ModStr6c	ModStr6c							
+item_absorbfire	143	27	1	1	ModStr5h	ModStr5h							
+item_absorblight	145	29	1	1	ModStr5j	ModStr5j							
+item_absorbmagic	147	33	1	1	ModStr5l	ModStr5l							
+item_absorbcold	149	31	1	1	ModStr5n	ModStr5n							
+item_elemskill_cold	362	157	1	1	ModStrColdskills	ModStrColdskills							
+item_elemskill_fire	363	157	1	1	ModStrFireskills	ModStrFireskills							
+item_elemskill_lightning	364	157	1	1	ModStrLightningskills	ModStrLightningskills							
+item_elemskill_poison	365	157	1	1	ModStrPoisonskills	ModStrPoisonskills							
+item_elemskill_magic	366	157	1	1	ModStrMagicskills	ModStrMagicskills							
+max_curses	368	160	1	1	StrToMaxCurses	StrToMaxCurses							
+map_glob_arealevel	374	205	1	1	MapGlobLevel	MapGlobLevel							
+item_healafterhit	424	16	1	1	ModItemHPaH	ModItemHPaH							
+toblock	20	134	2	1	ModStr3g	ModStr3g							
+manarecoverybonus	27	52	2	2	ModStr4g	ModStr4g							
+staminarecoverybonus	28	48	2	2	ModStr3v	ModStr3v							
+damageresist	36	22	2	2	ModStr2u	ModStr2u							
+lifedrainmindam	60	88	2	1	ModStr2z	ModStr2z							
+manadrainmindam	62	89	2	1	ModStr2y	ModStr2y							
+item_maxdurability_percent	75	3	2	2	ModStr2i	ModStr2i							
+item_maxhp_percent	76	58	2	2	ModStr2g	ModStr2g							
+item_maxmana_percent	77	54	2	2	ModStr2h	ModStr2h							
+item_goldbonus	79	10	2	1	ModStr1w	ModStr1w							
+item_magicbonus	80	8	2	1	ModStr1x	ModStr1x							
+item_reducedprices	87	8	2	2	ModitemRedVendP	ModitemRedVendP							
+curse_resistance	109	100	2	1	ModReduceCurseDuration	ModReduceCurseDuration							
+item_poisonlengthresist	110	18	2	2	ModStr3r	ModStr3r							
+item_damagetomana	114	11	2	1	ModStr3w	ModStr3w							
+item_tohit_percent	119	117	2	1	ModStr4c	ModStr4c							
+item_openwounds	135	83	2	1	ModStr3m	ModStr3m							
+item_crushingblow	136	87	2	1	ModStr5c	ModStr5c							
+item_deadlystrike	141	85	2	1	ModStr5q	ModStr5q							
+item_absorbfire_percent	142	23	2	2	ModStr5g	ModStr5g							
+item_absorblight_percent	144	24	2	2	ModStr5i	ModStr5i							
+item_absorbmagic_percent	146	26	2	2	ModStr5k	ModStr5k							
+item_absorbcold_percent	148	25	2	2	ModStr5m	ModStr5m							
+item_slow	150	77	2	2	ModStr5r	ModStr5r							
+item_staminadrainpct	154	49	2	1	ModStr6e	ModStr6e							
+map_defense	369	253	2	1	StrCorruptNum	StrCorruptNum							
+item_maxdamage_percent	17	129	3	0	ModStr2j	ModStr2j							
+item_mindamage_percent	18	130	3	0	ModStr2k	ModStr2k							
 normal_damage_reduction	34	22	3	2	ModStr2u	ModStr2u							
 magic_damage_reduction	35	21	3	2	ModStr2t	ModStr2t							
-damageresist	36	22	2	2	ModStr2u	ModStr2u							
+item_attackertakesdamage	78	13	3	2	ModStr1v	ModStr1v							
+item_knockback	81	76	3	0	ModStr1y	ModStr1y							
+item_restinpeace	108	81	3	0	ModitemSMRIP	ModitemSMRIP							
+item_ignoretargetac	115	119	3	0	ModStr3y	ModStr3y							
+item_preventheal	117	81	3	0	ModStr4a	ModStr4a							
+item_halffreezeduration	118	19	3	0	ModStr4b	ModStr4b							
+item_throwable	125	5	3	0	ModStr5a	ModStr5a							
+item_attackertakeslightdamage	128	14	3	2	ModStr3j	ModStr3j							
+item_indesctructible	152	160	3	0	ModStre9s	ModStre9s							
+item_cannotbefrozen	153	20	3	0	ModStr5z	ModStr5z							
+item_magicarrow	157	131	3	0	ModStr6h	ModStr6h							
+item_explosivearrow	158	133	3	0	ModStr6i	ModStr6i							
+item_replenish_quantity	253	2	3	0	ModStre9v	ModStre9v							
+item_extra_stack	254	4	3	0	ModStre9i	ModStre9i							
+corrupted	360	254	3	0	StrCorrupted	StrCorrupted							
+item_replenish_charges	422	1	3	0	ModStrRepCharge1	ModStrRepCharge1	ModStrRepCharge2						
+map_glob_add_mon_doll	437	160	3	0	MapAddMonDoll	MapAddMonDoll							
+map_glob_add_mon_succ	438	160	3	0	MapAddMonSucc	MapAddMonSucc							
+map_glob_add_mon_vamp	439	160	3	0	MapAddMonVamp	MapAddMonVamp							
+map_glob_add_mon_cow	440	160	3	0	MapAddMonCow	MapAddMonCow							
+map_glob_add_mon_horde	441	160	3	0	MapAddMonHorde	MapAddMonHorde							
+map_glob_add_mon_ghost	442	160	3	0	MapAddMonGhost	MapAddMonGhost							
+heroic	458	255	3	0	StrHeroic	StrHeroic							
+item_armor_percent	16	74	4	1	Modstr2v	Modstr2v							
+damagepercent	25	130	4	1	strModEnhancedDamage	strModEnhancedDamage							
 magicresist	37	41	4	2	ModStr1m	ModStr1m							
 maxmagicresist	38	46	4	1	ModStr5x	ModStr5x							
 fireresist	39	36	4	2	ModStr1j	ModStr1j		2	19		strModAllResistances	strModAllResistances	
@@ -46,22 +113,214 @@ coldresist	43	40	4	2	ModStr1k	ModStr1k		2	19		strModAllResistances	strModAllResi
 maxcoldresist	44	44	4	1	ModStr5v	ModStr5v							
 poisonresist	45	34	4	2	ModStr1n	ModStr1n		2	19		strModAllResistances	strModAllResistances	
 maxpoisonresist	46	45	4	1	ModStr5y	ModStr5y							
+item_addexperience	85	11	4	1	Moditem2ExpG	Moditem2ExpG							
+item_req_percent	91	0	4	2	ModStr3h	ModStr3h							
+item_fasterattackrate	93	145	4	1	ModStr4m	ModStr4m							
+item_fastermovevelocity	96	148	4	1	ModStr4s	ModStr4s							
+item_fastergethitrate	99	139	4	1	ModStr4p	ModStr4p							
+item_fasterblockrate	102	136	4	1	ModStr4y	ModStr4y							
+item_fastercastrate	105	142	4	1	ModStr4v	ModStr4v							
+item_demondamage_percent	121	112	4	1	ModStr4e	ModStr4e							
+item_undeaddamage_percent	122	108	4	1	ModStr4f	ModStr4f							
+item_pierce	156	132	4	1	ModPierceChance	ModPierceChance							
+passive_fire_mastery	329	88	4	1	ModitemdamFiresk	ModitemdamFiresk							
+passive_ltng_mastery	330	88	4	1	ModitemdamLtngsk	ModitemdamLtngsk							
+passive_cold_mastery	331	88	4	1	ModitemdamColdsk	ModitemdamColdsk							
+passive_pois_mastery	332	88	4	1	ModitemdamPoissk	ModitemdamPoissk							
+map_play_magicbonus	370	210	4	2	MapGlobMF	MapGlobMF		6	4	2	MapGlobMFGF	MapGlobMFGF	
+map_play_goldbonus	371	210	4	2	MapGlobGF	MapGlobGF		6	4	2	MapGlobMFGF	MapGlobMFGF	
+map_glob_density	372	211	4	2	MapGlobDensity	MapGlobDensity							
+map_play_addexperience	373	213	4	2	MapGlobExp	MapGlobExp							
+map_glob_monsterrarity	375	212	4	2	MapGlobMonRarity	MapGlobMonRarity							
+item_leap_speed	423	120	4	1	ModLeapSpeed	ModLeapSpeed							
+immune_stat	445	88	4	1	ModitemdamFiresk	ModitemdamFiresk							
+mon_cooldown1	446	88	4	1	ModitemdamFiresk	ModitemdamFiresk							
+mon_cooldown2	447	88	4	1	ModitemdamFiresk	ModitemdamFiresk							
+mon_cooldown3	448	88	4	1	ModitemdamFiresk	ModitemdamFiresk							
+item_howl	112	79	5	2	ModStr3u	ModStr3u							
+item_armor_perlevel	214	72	6	1	ModStr1i	ModStr1i	increaseswithplaylevelX						
+item_hp_perlevel	216	57	6	1	ModStr1u	ModStr1u	increaseswithplaylevelX						
+item_mana_perlevel	217	53	6	1	ModStr1e	ModStr1e	increaseswithplaylevelX						
+item_maxdamage_perlevel	218	125	6	1	ModStr1f	ModStr1f	increaseswithplaylevelX						
+item_strength_perlevel	220	66	6	1	ModStr1a	ModStr1a	increaseswithplaylevelX						
+item_dexterity_perlevel	221	64	6	1	ModStr1b	ModStr1b	increaseswithplaylevelX						
+item_energy_perlevel	222	60	6	1	ModStr1d	ModStr1d	increaseswithplaylevelX						
+item_vitality_perlevel	223	62	6	1	ModStr1c	ModStr1c	increaseswithplaylevelX						
+item_tohit_perlevel	224	114	6	1	ModStr1h	ModStr1h	increaseswithplaylevelX						
+item_cold_damagemax_perlevel	226	94	6	1	ModStr1s	ModStr1s	increaseswithplaylevelX						
+item_fire_damagemax_perlevel	227	100	6	1	ModStr1o	ModStr1o	increaseswithplaylevelX						
+item_ltng_damagemax_perlevel	228	97	6	1	ModStr1q	ModStr1q	increaseswithplaylevelX						
+item_pois_damagemax_perlevel	229	90	6	1	ModStr4h	ModStr4h	increaseswithplaylevelX						
+item_absorb_cold_perlevel	234	32	6	1	ModStre9p	ModStre9p	increaseswithplaylevelX						
+item_absorb_fire_perlevel	235	28	6	1	ModStre9o	ModStre9o	increaseswithplaylevelX						
+item_absorb_ltng_perlevel	236	30	6	1	ModStre9q	ModStre9q	increaseswithplaylevelX						
+item_stamina_perlevel	242	50	6	1	ModStr5d	ModStr5d	increaseswithplaylevelX						
+item_tohit_demon_perlevel	245	109	6	1	ModStr4j	ModStr4j	increaseswithplaylevelX						
+item_tohit_undead_perlevel	246	105	6	1	ModStr4k	ModStr4k	increaseswithplaylevelX						
+item_kick_damage_perlevel	249	120	6	1	ModStr5e	ModStr5e	increaseswithplaylevelX						
+map_mon_firemindam	376	102	6	2	MapMonHave	MapMonHave	ModStr1p						
+map_mon_firemaxdam	377	101	6	2	MapMonHave	MapMonHave	ModStr1o						
+map_mon_lightmindam	378	99	6	2	MapMonHave	MapMonHave	ModStr1r						
+map_mon_lightmaxdam	379	98	6	2	MapMonHave	MapMonHave	ModStr1q						
+map_mon_magicmindam	380	104	6	2	MapMonHave	MapMonHave	strModMagicDamage						
+map_mon_magicmaxdam	381	103	6	2	MapMonHave	MapMonHave	strModMagicDamage						
+map_mon_coldmindam	382	96	6	2	MapMonHave	MapMonHave	ModStr1t						
+map_mon_coldmaxdam	383	95	6	2	MapMonHave	MapMonHave	ModStr1s						
+map_mon_poisonmindam	385	92	6	2	MapMonHave	MapMonHave	ModStr4i						
+map_mon_poisonmaxdam	386	91	6	2	MapMonHave	MapMonHave	ModStr4h						
+map_mon_hpregen	402	56	6	2	MapMonHave	MapMonHave	ModStr2l						
+map_play_hpregen	413	205	6	2	MapPlayHave	MapPlayHave	ModStr2w						
+item_tohitpercent_perlevel	225	116	7	1	ModStr4c	ModStr4c	increaseswithplaylevelX						
+item_resist_cold_perlevel	230	39	7	2	ModStr1k	ModStr1k	increaseswithplaylevelX						
+item_resist_fire_perlevel	231	35	7	2	ModStr1j	ModStr1j	increaseswithplaylevelX						
+item_resist_ltng_perlevel	232	37	7	2	ModStr1l	ModStr1l	increaseswithplaylevelX						
+item_resist_pois_perlevel	233	33	7	2	ModStr1n	ModStr1n	increaseswithplaylevelX						
+item_find_gold_perlevel	239	9	7	1	ModStr1w	ModStr1w	increaseswithplaylevelX						
+item_find_magic_perlevel	240	7	7	1	ModStr1x	ModStr1x	increaseswithplaylevelX						
+item_crushingblow_perlevel	247	86	7	1	ModStr5c	ModStr5c	increaseswithplaylevelX						
+item_openwounds_perlevel	248	82	7	1	ModStr3m	ModStr3m	increaseswithplaylevelX						
+item_deadlystrike_perlevel	250	84	7	1	ModStr5q	ModStr5q	increaseswithplaylevelX						
+map_mon_absorbcold_percent	396	25	7	2	MapMonHave	MapMonHave	ModStr5m						
+map_mon_absorbmagic_percent	397	26	7	2	MapMonHave	MapMonHave	ModStr5k						
+map_mon_absorblight_percent	398	24	7	2	MapMonHave	MapMonHave	ModStr5i						
+map_mon_absorbfire_percent	399	23	7	2	MapMonHave	MapMonHave	ModStr5g						
+map_mon_velocitypercent	401	155	7	2	MapMonHave	MapMonHave	MapMonVelocity						
+map_mon_lifedrainmindam	403	88	7	2	MapMonHave	MapMonHave	ModStr2z						
+map_mon_maxhp_percent	405	58	7	2	MapMonHave	MapMonHave	MapMaxHP						
+map_mon_openwounds	407	83	7	2	MapMonHave	MapMonHave	ModStr3m						
+map_mon_crushingblow	408	87	7	2	MapMonHave	MapMonHave	ModStr5c						
+map_mon_curse_resistance	409	55	7	2	MapMonHave	MapMonHave	MapMonCurse						
+map_play_ac%	410	198	7	2	MapPlayHave	MapPlayHave	Modstr2v						
+map_play_toblock	412	199	7	2	MapPlayHave	MapPlayHave	MapPlayBlock						
+map_mon_passive_fire_pierce	414	200	7	2	MapMonIgnore	MapMonHave	MapMonFirePierce						
+map_mon_passive_ltng_pierce	415	200	7	2	MapMonIgnore	MapMonHave	MapMonLtngPierce						
+map_mon_passive_cold_pierce	416	200	7	2	MapMonIgnore	MapMonHave	MapMonColdPierce						
+map_mon_passive_pois_pierce	417	200	7	2	MapMonIgnore	MapMonHave	MapMonPoisPierce						
+map_play_fireresist	428	204	7	2	MapPlayHave	MapPlayHave	ModStr1j	3	7	2	MapPlayHave	MapPlayHave	MapPlayAllRes
+map_play_lightresist	429	203	7	2	MapPlayHave	MapPlayHave	ModStr1l	3	7	2	MapPlayHave	MapPlayHave	MapPlayAllRes
+map_play_coldresist	430	202	7	2	MapPlayHave	MapPlayHave	ModStr1k	3	7	2	MapPlayHave	MapPlayHave	MapPlayAllRes
+map_play_poisonresist	431	201	7	2	MapPlayHave	MapPlayHave	ModStr1n	3	7	2	MapPlayHave	MapPlayHave	MapPlayAllRes
+map_mon_deadlystrike	449	85	7	2	MapMonHave	MapMonHave	ModStr5q						
+map_play_fasterattackrate	451	145	7	2	MapPlayHave	MapPlayHave	ModStr4m						
+map_play_fastercastrate	452	142	7	2	MapPlayHave	MapPlayHave	ModStr4v						
+map_play_maxhp_percent	454	58	7	2	MapPlayHave	MapPlayHave	ModStr2g						
+map_play_maxmana_percent	455	54	7	2	MapPlayHave	MapPlayHave	ModStr2h						
+map_play_damageresist	456	22	7	2	MapPlayHave	MapPlayHave	ModStr2u						
+map_play_velocitypercent	457		7	2	MapPlayHave	MapPlayHave	ModVelocity						
+item_armorpercent_perlevel	215	73	8	1	Modstr2v	Modstr2v	increaseswithplaylevelX						
+item_maxdamage_percent_perlevel	219	128	8	1	ModStr2j	ModStr2j	increaseswithplaylevelX						
+item_regenstamina_perlevel	241	47	8	2	ModStr3v	ModStr3v	increaseswithplaylevelX						
+item_damage_demon_perlevel	243	111	8	1	ModStr4e	ModStr4e	increaseswithplaylevelX						
+item_damage_undead_perlevel	244	107	8	1	ModStr4f	ModStr4f	increaseswithplaylevelX						
+map_mon_passive_fire_mastery	388	88	8	2	MapMonHave	MapMonHave	ModitemdamFiresk						
+map_mon_passive_ltng_mastery	389	88	8	2	MapMonHave	MapMonHave	ModitemdamLtngsk						
+map_mon_passive_cold_mastery	390	88	8	2	MapMonHave	MapMonHave	ModitemdamColdsk						
+map_mon_passive_pois_mastery	391	88	8	2	MapMonHave	MapMonHave	ModitemdamPoissk						
+map_mon_fasterattackrate	392	145	8	2	MapMonHave	MapMonHave	ModStr4m	4	8	2	MapMonHave	MapMonHave	MapAtkCastRate
+map_mon_fastercastrate	393	142	8	2	MapMonHave	MapMonHave	ModStr4v	4	8	2	MapMonHave	MapMonHave	MapAtkCastRate
+map_mon_tohit	394	115	8	2	MapMonHave	MapMonHave	ModStr1h	5	8	2	MapMonHave	MapMonHave	MapPierceAR
+map_mon_ac%	395	114	8	2	MapMonHave	MapMonHave	Modstr2v						
+map_mon_fastergethitrate	404	139	8	2	MapMonHave	MapMonHave	ModStr4p						
+map_mon_pierce	406	132	8	2	MapMonHave	MapMonHave	ModPierceChance	5	8	2	MapMonHave	MapMonHave	MapPierceAR
+map_play_fastergethitrate	411	204	8	2	MapPlayHave	MapPlayHave	ModStr4p						
+map_play_maxfireresist	418	204	8	2	MapPlayHave	MapPlayHave	ModStr5u						
+map_play_maxlightresist	419	203	8	2	MapPlayHave	MapPlayHave	ModStr5w						
+map_play_maxcoldresist	420	202	8	2	MapPlayHave	MapPlayHave	ModStr5v						
+map_play_maxpoisonresist	421	201	8	2	MapPlayHave	MapPlayHave	ModStr5y						
+map_mon_ed%	426	115	8	2	MapMonHave	MapMonHave	MapEnhancedDmg						
+map_mon_phys_as_extra_ltng	432	200	8	2	MapMonHave	MapMonHave	MapPhysExtraLtng						
+map_mon_phys_as_extra_cold	433	200	8	2	MapMonHave	MapMonHave	MapPhysExtraCold						
+map_mon_phys_as_extra_fire	434	200	8	2	MapMonHave	MapMonHave	MapPhysExtraFire						
+map_mon_phys_as_extra_pois	435	200	8	2	MapMonHave	MapMonHave	MapPhysExtraPois						
+map_mon_phys_as_extra_mag	436	200	8	2	MapMonHave	MapMonHave	MapPhysExtraMag						
+item_thorns_perlevel	238	12	9	2	ModStr1v	ModStr1v	increaseswithplaylevelX						
+map_mon_normal_damage_reduction	400	22	9	2	MapMonTake	MapMonTake	MapFlatPhysRed						
+map_mon_splash	427	160	9	0	MapMon	MapMon	MapMonSplash						
+extra_bonespears	443	120	9	2	StrExtraBonespear	StrExtraBonespear	StrExtraBonespear2						
+extra_revives	444	68	9	2	StrExtraRevives	StrExtraRevives	StrExtraRevives2						
+map_mon_cannotbefrozen	450	20	9	0	MapMonHave	MapMonHave	ModStr5z						
+extra_spirits	459	68	9	2	StrExtraRevives	StrExtraRevives	StrExtraSpirits						
+item_replenish_durability	252	1	11	0	ModStre9t	ModStre9t							
+item_stupidity	113	80	12	2	ModStr6d	ModStr6d							
+item_freeze	134	78	12	2	ModStr3l	ModStr3l							
+item_addclassskills	83	150	13	1	ModStr3a	ModStr3a							
+item_addskill_tab	188	151	14		StrSklTabItem1	StrSklTabItem1							
+item_skillonattack	195	160	15		ItemExpansiveChancX	ItemExpansiveChancX							
+item_skillonkill	196	160	15		ModitemskonKill	ModitemskonKill							
+item_skillondeath	197	160	15		Moditemskondeath	Moditemskondeath							
+item_skillonhit	198	160	15		ItemExpansiveChanc1	ItemExpansiveChanc1							
+item_skillonlevelup	199	160	15		ModitemskonLevel	ModitemskonLevel							
+item_skillongethit	201	160	15		ItemExpansiveChanc2	ItemExpansiveChanc2							
+item_splashonhit	359	160	15	0	splash3	splash3							
+map_mon_skillondeath	453	160	15		Moditemskondeath	Moditemskondeath							
+item_aura	151	159	16	0	ModitemAura	ModitemAura							
+item_armor_bytime	268	180	17	1	ModStr1i	ModStr1i							
+item_hp_bytime	270	180	17	1	ModStr1u	ModStr1u							
+item_mana_bytime	271	180	17	1	ModStr1e	ModStr1e							
+item_maxdamage_bytime	272	180	17	1	ModStr1f	ModStr1f							
+item_strength_bytime	274	180	17	1	ModStr1a	ModStr1a							
+item_dexterity_bytime	275	180	17	1	ModStr1b	ModStr1b							
+item_energy_bytime	276	180	17	1	ModStr1d	ModStr1d							
+item_vitality_bytime	277	180	17	1	ModStr1c	ModStr1c							
+item_tohit_bytime	278	180	17	1	ModStr1h	ModStr1h							
+item_cold_damagemax_bytime	280	180	17	1	ModStr1s	ModStr1s							
+item_fire_damagemax_bytime	281	180	17	1	ModStr1o	ModStr1o							
+item_ltng_damagemax_bytime	282	180	17	1	ModStr1q	ModStr1q							
+item_pois_damagemax_bytime	283	180	17	1	ModStr4h	ModStr4h							
+item_stamina_bytime	295	180	17	1	ModStr5d	ModStr5d							
+item_tohit_demon_bytime	298	180	17	1	ModStr4j	ModStr4j							
+item_tohit_undead_bytime	299	180	17	1	ModStr4k	ModStr4k							
+item_kick_damage_bytime	302	180	17	1	ModStr5e	ModStr5e							
+item_armorpercent_bytime	269	180	18	1	Modstr2v	Modstr2v							
+item_maxdamage_percent_bytime	273	180	18	1	ModStr2j	ModStr2j							
+item_tohitpercent_bytime	279	180	18	1	ModStr4c	ModStr4c							
+item_resist_cold_bytime	284	180	18	2	ModStr1k	ModStr1k							
+item_resist_fire_bytime	285	180	18	2	ModStr1j	ModStr1j							
+item_resist_ltng_bytime	286	180	18	2	ModStr1l	ModStr1l							
+item_resist_pois_bytime	287	180	18	2	ModStr1n	ModStr1n							
+item_absorb_cold_bytime	288	180	18	1	ModStre9p	ModStre9p							
+item_absorb_fire_bytime	289	180	18	1	ModStre9o	ModStre9o							
+item_absorb_ltng_bytime	290	180	18	1	ModStre9q	ModStre9q							
+item_find_gold_bytime	292	180	18	2	ModStr1w	ModStr1w							
+item_find_magic_bytime	293	180	18	1	ModStr1x	ModStr1x							
+item_regenstamina_bytime	294	180	18	2	ModStr3v	ModStr3v							
+item_damage_demon_bytime	296	180	18	1	ModStr4e	ModStr4e							
+item_damage_undead_bytime	297	180	18	1	ModStr4f	ModStr4f							
+item_crushingblow_bytime	300	180	18	1	ModStr5c	ModStr5c							
+item_openwounds_bytime	301	180	18	1	ModStr3m	ModStr3m							
+item_deadlystrike_bytime	303	180	18	1	ModStr5q	ModStr5q							
+item_fractionaltargetac	116	118	20	1	ModStr5o	ModStr5o							
+item_pierce_cold	305	88	20	1	Moditemenrescoldsk	Moditemenrescoldsk							
+item_pierce_fire	306	88	20	1	Moditemenresfiresk	Moditemenresfiresk							
+item_pierce_ltng	307	88	20	1	Moditemenresltngsk	Moditemenresltngsk							
+item_pierce_pois	308	88	20	1	Moditemenrespoissk	Moditemenrespoissk							
+passive_fire_pierce	333	88	20	1	Moditemenresfiresk	Moditemenresfiresk							
+passive_ltng_pierce	334	88	20	1	Moditemenresltngsk	Moditemenresltngsk							
+passive_cold_pierce	335	88	20	1	Moditemenrescoldsk	Moditemenrescoldsk							
+passive_pois_pierce	336	88	20	1	Moditemenrespoissk	Moditemenrespoissk							
+passive_phys_pierce	425	88	20	1	ModPhysPierce	ModPhysPierce							
+attack_vs_montype	179	108	22	1	ModitemAttratvsM	ModitemAttratvsM							
+damage_vs_montype	180	106	22	1	Moditemdamvsm	Moditemdamvsm							
+item_reanimate	155	17	23	1	Moditemreanimas	Moditemreanimas							
+item_charged_skill	204	1	24		ModStre10d	ModStre10d							
+item_singleskill	107	81	27										
+item_nonclassskill	97	81	28										
+statpts	4												
+newskills	5												
+hitpoints	6												
+mana	8												
+stamina	10												
+level	12												
+experience	13												
+gold	14												
+goldbank	15												
+manarecovery	26												
+lastexp	29												
+nextexp	30												
 damageaura	47												
-firemindam	48	102	1	1	ModStr1p	ModStr1p							
-firemaxdam	49	101	1	1	ModStr1o	ModStr1o							
-lightmindam	50	99	1	1	ModStr1r	ModStr1r							
-lightmaxdam	51	98	1	1	ModStr1q	ModStr1q							
-magicmindam	52	104	1	1	strModMagicDamage	strModMagicDamage							
-magicmaxdam	53	103	1	1	strModMagicDamage	strModMagicDamage							
-coldmindam	54	96	1	1	ModStr1t	ModStr1t							
-coldmaxdam	55	95	1	1	ModStr1s	ModStr1s							
 coldlength	56												
-poisonmindam	57	92	1	1	ModStr4i	ModStr4i							
-poisonmaxdam	58	91	1	1	ModStr4h	ModStr4h							
 poisonlength	59												
-lifedrainmindam	60	88	2	1	ModStr2z	ModStr2z							
 lifedrainmaxdam	61												
-manadrainmindam	62	89	2	1	ModStr2y	ModStr2y							
 manadrainmaxdam	63												
 stamdrainmindam	64												
 stamdrainmaxdam	65												
@@ -73,91 +332,26 @@ quantity	70
 value	71												
 durability	72												
 maxdurability	73												
-hpregen	74	56	1	2	ModStr2l	ModStr2w							
-item_maxdurability_percent	75	3	2	2	ModStr2i	ModStr2i							
-item_maxhp_percent	76	58	2	2	ModStr2g	ModStr2g							
-item_maxmana_percent	77	54	2	2	ModStr2h	ModStr2h							
-item_attackertakesdamage	78	13	3	2	ModStr1v	ModStr1v							
-item_goldbonus	79	10	2	1	ModStr1w	ModStr1w							
-item_magicbonus	80	8	2	1	ModStr1x	ModStr1x							
-item_knockback	81	76	3	0	ModStr1y	ModStr1y							
 item_timeduration	82												
-item_addclassskills	83	150	13	1	ModStr3a	ModStr3a							
 unsentparam1	84												
-item_addexperience	85	11	4	1	Moditem2ExpG	Moditem2ExpG							
-item_healafterkill	86	16	1	1	ModitemHPaK	ModitemHPaK							
-item_reducedprices	87	8	2	2	ModitemRedVendP	ModitemRedVendP							
 item_doubleherbduration	88												
-item_lightradius	89	6	1	1	ModStr3f	ModStr3f							
 item_lightcolor	90												
-item_req_percent	91	0	4	2	ModStr3h	ModStr3h							
 item_levelreq	92												
-item_fasterattackrate	93	145	4	1	ModStr4m	ModStr4m							
 item_levelreqpct	94												
 lastblockframe	95												
-item_fastermovevelocity	96	148	4	1	ModStr4s	ModStr4s							
-item_nonclassskill	97	81	28										
 state	98												
-item_fastergethitrate	99	139	4	1	ModStr4p	ModStr4p							
 monster_playercount	100												
 skill_poison_override_length	101												
-item_fasterblockrate	102	136	4	1	ModStr4y	ModStr4y							
 skill_bypass_undead	103												
 skill_bypass_demons	104												
-item_fastercastrate	105	142	4	1	ModStr4v	ModStr4v							
 skill_bypass_beasts	106												
-item_singleskill	107	81	27										
-item_restinpeace	108	81	3	0	ModitemSMRIP	ModitemSMRIP							
-curse_resistance	109	100	2	1	ModReduceCurseDuration	ModReduceCurseDuration							
-item_poisonlengthresist	110	18	2	2	ModStr3r	ModStr3r							
-item_normaldamage	111	122	1	2	ModStr5b	ModStr5b							
-item_howl	112	79	5	2	ModStr3u	ModStr3u							
-item_stupidity	113	80	12	2	ModStr6d	ModStr6d							
-item_damagetomana	114	11	2	1	ModStr3w	ModStr3w							
-item_ignoretargetac	115	119	3	0	ModStr3y	ModStr3y							
-item_fractionaltargetac	116	118	20	1	ModStr5o	ModStr5o							
-item_preventheal	117	81	3	0	ModStr4a	ModStr4a							
-item_halffreezeduration	118	19	3	0	ModStr4b	ModStr4b							
-item_tohit_percent	119	117	2	1	ModStr4c	ModStr4c							
-item_damagetargetac	120	75	1	1	ModStr4d	ModStr4d							
-item_demondamage_percent	121	112	4	1	ModStr4e	ModStr4e							
-item_undeaddamage_percent	122	108	4	1	ModStr4f	ModStr4f							
-item_demon_tohit	123	110	1	1	ModStr4j	ModStr4j							
-item_undead_tohit	124	106	1	1	ModStr4k	ModStr4k							
-item_throwable	125	5	3	0	ModStr5a	ModStr5a							
 item_elemskill	126	1											
-item_allskills	127	158	1	1	ModStr3k	ModStr3k							
-item_attackertakeslightdamage	128	14	3	2	ModStr3j	ModStr3j							
 ironmaiden_level	129												
 lifetap_level	130												
 thorns_percent	131												
 bonearmor	132												
 bonearmormax	133												
-item_freeze	134	78	12	2	ModStr3l	ModStr3l							
-item_openwounds	135	83	2	1	ModStr3m	ModStr3m							
-item_crushingblow	136	87	2	1	ModStr5c	ModStr5c							
-item_kickdamage	137	121	1	1	ModStr5e	ModStr5e							
-item_manaafterkill	138	16	1	1	ModStr5f	ModStr5f							
-item_healafterdemonkill	139	15	1	1	ModStr6c	ModStr6c							
 item_extrablood	140												
-item_deadlystrike	141	85	2	1	ModStr5q	ModStr5q							
-item_absorbfire_percent	142	23	2	2	ModStr5g	ModStr5g							
-item_absorbfire	143	27	1	1	ModStr5h	ModStr5h							
-item_absorblight_percent	144	24	2	2	ModStr5i	ModStr5i							
-item_absorblight	145	29	1	1	ModStr5j	ModStr5j							
-item_absorbmagic_percent	146	26	2	2	ModStr5k	ModStr5k							
-item_absorbmagic	147	33	1	1	ModStr5l	ModStr5l							
-item_absorbcold_percent	148	25	2	2	ModStr5m	ModStr5m							
-item_absorbcold	149	31	1	1	ModStr5n	ModStr5n							
-item_slow	150	77	2	2	ModStr5r	ModStr5r							
-item_aura	151	159	16	0	ModitemAura	ModitemAura							
-item_indesctructible	152	160	3	0	ModStre9s	ModStre9s							
-item_cannotbefrozen	153	20	3	0	ModStr5z	ModStr5z							
-item_staminadrainpct	154	49	2	1	ModStr6e	ModStr6e							
-item_reanimate	155	17	23	1	Moditemreanimas	Moditemreanimas							
-item_pierce	156	132	4	1	ModPierceChance	ModPierceChance							
-item_magicarrow	157	131	3	0	ModStr6h	ModStr6h							
-item_explosivearrow	158	133	3	0	ModStr6i	ModStr6i							
 item_throw_mindamage	159												
 item_throw_maxdamage	160												
 skill_handofathena	161												
@@ -178,8 +372,6 @@ goldlost	175
 conversion_level	176												
 conversion_maxhp	177												
 unit_dooverlay	178												
-attack_vs_montype	179	108	22	1	ModitemAttratvsM	ModitemAttratvsM							
-damage_vs_montype	180	106	22	1	Moditemdamvsm	Moditemdamvsm							
 fade	181												
 armor_override_percent	182												
 unused183	183												
@@ -187,23 +379,15 @@ unused184	184
 unused185	185												
 unused186	186												
 unused187	187												
-item_addskill_tab	188	151	14		StrSklTabItem1	StrSklTabItem1							
 unused189	189												
 unused190	190												
 unused191	191												
 unused192	192												
 unused193	193												
-item_numsockets	194												
-item_skillonattack	195	160	15		ItemExpansiveChancX	ItemExpansiveChancX							
-item_skillonkill	196	160	15		ModitemskonKill	ModitemskonKill							
-item_skillondeath	197	160	15		Moditemskondeath	Moditemskondeath							
-item_skillonhit	198	160	15		ItemExpansiveChanc1	ItemExpansiveChanc1							
-item_skillonlevelup	199	160	15		ModitemskonLevel	ModitemskonLevel							
+item_numsockets	194		29										
 unused200	200												
-item_skillongethit	201	160	15		ItemExpansiveChanc2	ItemExpansiveChanc2							
 unused202	202												
 unused203	203												
-item_charged_skill	204	1	24		ModStre10d	ModStre10d							
 unused204	205												
 unused205	206												
 unused206	207												
@@ -213,47 +397,8 @@ unused209	210
 unused210	211												
 unused211	212												
 unused212	213												
-item_armor_perlevel	214	72	6	1	ModStr1i	ModStr1i	increaseswithplaylevelX						
-item_armorpercent_perlevel	215	73	8	1	Modstr2v	Modstr2v	increaseswithplaylevelX						
-item_hp_perlevel	216	57	6	1	ModStr1u	ModStr1u	increaseswithplaylevelX						
-item_mana_perlevel	217	53	6	1	ModStr1e	ModStr1e	increaseswithplaylevelX						
-item_maxdamage_perlevel	218	125	6	1	ModStr1f	ModStr1f	increaseswithplaylevelX						
-item_maxdamage_percent_perlevel	219	128	8	1	ModStr2j	ModStr2j	increaseswithplaylevelX						
-item_strength_perlevel	220	66	6	1	ModStr1a	ModStr1a	increaseswithplaylevelX						
-item_dexterity_perlevel	221	64	6	1	ModStr1b	ModStr1b	increaseswithplaylevelX						
-item_energy_perlevel	222	60	6	1	ModStr1d	ModStr1d	increaseswithplaylevelX						
-item_vitality_perlevel	223	62	6	1	ModStr1c	ModStr1c	increaseswithplaylevelX						
-item_tohit_perlevel	224	114	6	1	ModStr1h	ModStr1h	increaseswithplaylevelX						
-item_tohitpercent_perlevel	225	116	7	1	ModStr4c	ModStr4c	increaseswithplaylevelX						
-item_cold_damagemax_perlevel	226	94	6	1	ModStr1s	ModStr1s	increaseswithplaylevelX						
-item_fire_damagemax_perlevel	227	100	6	1	ModStr1o	ModStr1o	increaseswithplaylevelX						
-item_ltng_damagemax_perlevel	228	97	6	1	ModStr1q	ModStr1q	increaseswithplaylevelX						
-item_pois_damagemax_perlevel	229	90	6	1	ModStr4h	ModStr4h	increaseswithplaylevelX						
-item_resist_cold_perlevel	230	39	7	2	ModStr1k	ModStr1k	increaseswithplaylevelX						
-item_resist_fire_perlevel	231	35	7	2	ModStr1j	ModStr1j	increaseswithplaylevelX						
-item_resist_ltng_perlevel	232	37	7	2	ModStr1l	ModStr1l	increaseswithplaylevelX						
-item_resist_pois_perlevel	233	33	7	2	ModStr1n	ModStr1n	increaseswithplaylevelX						
-item_absorb_cold_perlevel	234	32	6	1	ModStre9p	ModStre9p	increaseswithplaylevelX						
-item_absorb_fire_perlevel	235	28	6	1	ModStre9o	ModStre9o	increaseswithplaylevelX						
-item_absorb_ltng_perlevel	236	30	6	1	ModStre9q	ModStre9q	increaseswithplaylevelX						
 item_absorb_pois_perlevel	237												
-item_thorns_perlevel	238	12	9	2	ModStr1v	ModStr1v	increaseswithplaylevelX						
-item_find_gold_perlevel	239	9	7	1	ModStr1w	ModStr1w	increaseswithplaylevelX						
-item_find_magic_perlevel	240	7	7	1	ModStr1x	ModStr1x	increaseswithplaylevelX						
-item_regenstamina_perlevel	241	47	8	2	ModStr3v	ModStr3v	increaseswithplaylevelX						
-item_stamina_perlevel	242	50	6	1	ModStr5d	ModStr5d	increaseswithplaylevelX						
-item_damage_demon_perlevel	243	111	8	1	ModStr4e	ModStr4e	increaseswithplaylevelX						
-item_damage_undead_perlevel	244	107	8	1	ModStr4f	ModStr4f	increaseswithplaylevelX						
-item_tohit_demon_perlevel	245	109	6	1	ModStr4j	ModStr4j	increaseswithplaylevelX						
-item_tohit_undead_perlevel	246	105	6	1	ModStr4k	ModStr4k	increaseswithplaylevelX						
-item_crushingblow_perlevel	247	86	7	1	ModStr5c	ModStr5c	increaseswithplaylevelX						
-item_openwounds_perlevel	248	82	7	1	ModStr3m	ModStr3m	increaseswithplaylevelX						
-item_kick_damage_perlevel	249	120	6	1	ModStr5e	ModStr5e	increaseswithplaylevelX						
-item_deadlystrike_perlevel	250	84	7	1	ModStr5q	ModStr5q	increaseswithplaylevelX						
 item_find_gems_perlevel	251												
-item_replenish_durability	252	1	11	0	ModStre9t	ModStre9t							
-item_replenish_quantity	253	2	3	0	ModStre9v	ModStre9v							
-item_extra_stack	254	4	3	0	ModStre9i	ModStre9i							
 item_find_item	255												
 item_slash_damage	256												
 item_slash_damage_percent	257												
@@ -267,47 +412,8 @@ item_absorb_thrust	264
 item_absorb_slash_percent	265												
 item_absorb_crush_percent	266												
 item_absorb_thrust_percent	267												
-item_armor_bytime	268	180	17	1	ModStr1i	ModStr1i							
-item_armorpercent_bytime	269	180	18	1	Modstr2v	Modstr2v							
-item_hp_bytime	270	180	17	1	ModStr1u	ModStr1u							
-item_mana_bytime	271	180	17	1	ModStr1e	ModStr1e							
-item_maxdamage_bytime	272	180	17	1	ModStr1f	ModStr1f							
-item_maxdamage_percent_bytime	273	180	18	1	ModStr2j	ModStr2j							
-item_strength_bytime	274	180	17	1	ModStr1a	ModStr1a							
-item_dexterity_bytime	275	180	17	1	ModStr1b	ModStr1b							
-item_energy_bytime	276	180	17	1	ModStr1d	ModStr1d							
-item_vitality_bytime	277	180	17	1	ModStr1c	ModStr1c							
-item_tohit_bytime	278	180	17	1	ModStr1h	ModStr1h							
-item_tohitpercent_bytime	279	180	18	1	ModStr4c	ModStr4c							
-item_cold_damagemax_bytime	280	180	17	1	ModStr1s	ModStr1s							
-item_fire_damagemax_bytime	281	180	17	1	ModStr1o	ModStr1o							
-item_ltng_damagemax_bytime	282	180	17	1	ModStr1q	ModStr1q							
-item_pois_damagemax_bytime	283	180	17	1	ModStr4h	ModStr4h							
-item_resist_cold_bytime	284	180	18	2	ModStr1k	ModStr1k							
-item_resist_fire_bytime	285	180	18	2	ModStr1j	ModStr1j							
-item_resist_ltng_bytime	286	180	18	2	ModStr1l	ModStr1l							
-item_resist_pois_bytime	287	180	18	2	ModStr1n	ModStr1n							
-item_absorb_cold_bytime	288	180	18	1	ModStre9p	ModStre9p							
-item_absorb_fire_bytime	289	180	18	1	ModStre9o	ModStre9o							
-item_absorb_ltng_bytime	290	180	18	1	ModStre9q	ModStre9q							
 item_absorb_pois_bytime	291												
-item_find_gold_bytime	292	180	18	2	ModStr1w	ModStr1w							
-item_find_magic_bytime	293	180	18	1	ModStr1x	ModStr1x							
-item_regenstamina_bytime	294	180	18	2	ModStr3v	ModStr3v							
-item_stamina_bytime	295	180	17	1	ModStr5d	ModStr5d							
-item_damage_demon_bytime	296	180	18	1	ModStr4e	ModStr4e							
-item_damage_undead_bytime	297	180	18	1	ModStr4f	ModStr4f							
-item_tohit_demon_bytime	298	180	17	1	ModStr4j	ModStr4j							
-item_tohit_undead_bytime	299	180	17	1	ModStr4k	ModStr4k							
-item_crushingblow_bytime	300	180	18	1	ModStr5c	ModStr5c							
-item_openwounds_bytime	301	180	18	1	ModStr3m	ModStr3m							
-item_kick_damage_bytime	302	180	17	1	ModStr5e	ModStr5e							
-item_deadlystrike_bytime	303	180	18	1	ModStr5q	ModStr5q							
 item_find_gems_bytime	304												
-item_pierce_cold	305	88	20	1	Moditemenrescoldsk	Moditemenrescoldsk							
-item_pierce_fire	306	88	20	1	Moditemenresfiresk	Moditemenresfiresk							
-item_pierce_ltng	307	88	20	1	Moditemenresltngsk	Moditemenresltngsk							
-item_pierce_pois	308	88	20	1	Moditemenrespoissk	Moditemenrespoissk							
 item_damage_vs_monster	309												
 item_damage_percent_vs_monster	310												
 item_tohit_vs_monster	311												
@@ -328,14 +434,6 @@ progressive_tohit	325
 poison_count	326												
 damage_framerate	327												
 pierce_idx	328												
-passive_fire_mastery	329	88	4	1	ModitemdamFiresk	ModitemdamFiresk							
-passive_ltng_mastery	330	88	4	1	ModitemdamLtngsk	ModitemdamLtngsk							
-passive_cold_mastery	331	88	4	1	ModitemdamColdsk	ModitemdamColdsk							
-passive_pois_mastery	332	88	4	1	ModitemdamPoissk	ModitemdamPoissk							
-passive_fire_pierce	333	88	20	1	Moditemenresfiresk	Moditemenresfiresk							
-passive_ltng_pierce	334	88	20	1	Moditemenresltngsk	Moditemenresltngsk							
-passive_cold_pierce	335	88	20	1	Moditemenrescoldsk	Moditemenrescoldsk							
-passive_pois_pierce	336	88	20	1	Moditemenrespoissk	Moditemenrespoissk							
 passive_critical_strike	337												
 passive_dodge	338												
 passive_avoid	339												
@@ -358,104 +456,6 @@ shortparam1	355
 questitemdifficulty	356												
 passive_mag_mastery	357												
 passive_mag_pierce	358												
-item_splashonhit	359	160	15	0	splash3	splash3							
-corrupted	360	254	3	0	StrCorrupted	StrCorrupted							
-corruptor	361	253	0	0	StrCorruptNum	StrCorruptNum							
-item_elemskill_cold	362	157	1	1	ModStrColdskills	ModStrColdskills							
-item_elemskill_fire	363	157	1	1	ModStrFireskills	ModStrFireskills							
-item_elemskill_lightning	364	157	1	1	ModStrLightningskills	ModStrLightningskills							
-item_elemskill_poison	365	157	1	1	ModStrPoisonskills	ModStrPoisonskills							
-item_elemskill_magic	366	157	1	1	ModStrMagicskills	ModStrMagicskills							
 skill_cold_enchant	367												
-max_curses	368	160	1	1	StrToMaxCurses	StrToMaxCurses							
-map_defense	369	253	2	1	StrCorruptNum	StrCorruptNum							
-map_play_magicbonus	370	210	4	2	MapGlobMF	MapGlobMF		6	4	2	MapGlobMFGF	MapGlobMFGF	
-map_play_goldbonus	371	210	4	2	MapGlobGF	MapGlobGF		6	4	2	MapGlobMFGF	MapGlobMFGF	
-map_glob_density	372	211	4	2	MapGlobDensity	MapGlobDensity							
-map_play_addexperience	373	213	4	2	MapGlobExp	MapGlobExp							
-map_glob_arealevel	374	205	1	1	MapGlobLevel	MapGlobLevel							
-map_glob_monsterrarity	375	212	4	2	MapGlobMonRarity	MapGlobMonRarity							
-map_mon_firemindam	376	102	6	2	MapMonHave	MapMonHave	ModStr1p						
-map_mon_firemaxdam	377	101	6	2	MapMonHave	MapMonHave	ModStr1o						
-map_mon_lightmindam	378	99	6	2	MapMonHave	MapMonHave	ModStr1r						
-map_mon_lightmaxdam	379	98	6	2	MapMonHave	MapMonHave	ModStr1q						
-map_mon_magicmindam	380	104	6	2	MapMonHave	MapMonHave	strModMagicDamage						
-map_mon_magicmaxdam	381	103	6	2	MapMonHave	MapMonHave	strModMagicDamage						
-map_mon_coldmindam	382	96	6	2	MapMonHave	MapMonHave	ModStr1t						
-map_mon_coldmaxdam	383	95	6	2	MapMonHave	MapMonHave	ModStr1s						
 map_mon_coldlength	384												
-map_mon_poisonmindam	385	92	6	2	MapMonHave	MapMonHave	ModStr4i						
-map_mon_poisonmaxdam	386	91	6	2	MapMonHave	MapMonHave	ModStr4h						
 map_mon_poisonlength	387												
-map_mon_passive_fire_mastery	388	88	8	2	MapMonHave	MapMonHave	ModitemdamFiresk						
-map_mon_passive_ltng_mastery	389	88	8	2	MapMonHave	MapMonHave	ModitemdamLtngsk						
-map_mon_passive_cold_mastery	390	88	8	2	MapMonHave	MapMonHave	ModitemdamColdsk						
-map_mon_passive_pois_mastery	391	88	8	2	MapMonHave	MapMonHave	ModitemdamPoissk						
-map_mon_fasterattackrate	392	145	8	2	MapMonHave	MapMonHave	ModStr4m	4	8	2	MapMonHave	MapMonHave	MapAtkCastRate
-map_mon_fastercastrate	393	142	8	2	MapMonHave	MapMonHave	ModStr4v	4	8	2	MapMonHave	MapMonHave	MapAtkCastRate
-map_mon_tohit	394	115	8	2	MapMonHave	MapMonHave	ModStr1h	5	8	2	MapMonHave	MapMonHave	MapPierceAR
-map_mon_ac%	395	114	8	2	MapMonHave	MapMonHave	Modstr2v						
-map_mon_absorbcold_percent	396	25	7	2	MapMonHave	MapMonHave	ModStr5m						
-map_mon_absorbmagic_percent	397	26	7	2	MapMonHave	MapMonHave	ModStr5k						
-map_mon_absorblight_percent	398	24	7	2	MapMonHave	MapMonHave	ModStr5i						
-map_mon_absorbfire_percent	399	23	7	2	MapMonHave	MapMonHave	ModStr5g						
-map_mon_normal_damage_reduction	400	22	9	2	MapMonTake	MapMonTake	MapFlatPhysRed						
-map_mon_velocitypercent	401	155	7	2	MapMonHave	MapMonHave	MapMonVelocity						
-map_mon_hpregen	402	56	6	2	MapMonHave	MapMonHave	ModStr2l						
-map_mon_lifedrainmindam	403	88	7	2	MapMonHave	MapMonHave	ModStr2z						
-map_mon_fastergethitrate	404	139	8	2	MapMonHave	MapMonHave	ModStr4p						
-map_mon_maxhp_percent	405	58	7	2	MapMonHave	MapMonHave	MapMaxHP						
-map_mon_pierce	406	132	8	2	MapMonHave	MapMonHave	ModPierceChance	5	8	2	MapMonHave	MapMonHave	MapPierceAR
-map_mon_openwounds	407	83	7	2	MapMonHave	MapMonHave	ModStr3m						
-map_mon_crushingblow	408	87	7	2	MapMonHave	MapMonHave	ModStr5c						
-map_mon_curse_resistance	409	55	7	2	MapMonHave	MapMonHave	MapMonCurse						
-map_play_ac%	410	198	7	2	MapPlayHave	MapPlayHave	Modstr2v						
-map_play_fastergethitrate	411	204	8	2	MapPlayHave	MapPlayHave	ModStr4p						
-map_play_toblock	412	199	7	2	MapPlayHave	MapPlayHave	MapPlayBlock						
-map_play_hpregen	413	205	6	2	MapPlayHave	MapPlayHave	ModStr2w						
-map_mon_passive_fire_pierce	414	200	7	2	MapMonIgnore	MapMonHave	MapMonFirePierce						
-map_mon_passive_ltng_pierce	415	200	7	2	MapMonIgnore	MapMonHave	MapMonLtngPierce						
-map_mon_passive_cold_pierce	416	200	7	2	MapMonIgnore	MapMonHave	MapMonColdPierce						
-map_mon_passive_pois_pierce	417	200	7	2	MapMonIgnore	MapMonHave	MapMonPoisPierce						
-map_play_maxfireresist	418	204	8	2	MapPlayHave	MapPlayHave	ModStr5u						
-map_play_maxlightresist	419	203	8	2	MapPlayHave	MapPlayHave	ModStr5w						
-map_play_maxcoldresist	420	202	8	2	MapPlayHave	MapPlayHave	ModStr5v						
-map_play_maxpoisonresist	421	201	8	2	MapPlayHave	MapPlayHave	ModStr5y						
-item_replenish_charges	422	1	3	0	ModStrRepCharge1	ModStrRepCharge1	ModStrRepCharge2						
-item_leap_speed	423	120	4	1	ModLeapSpeed	ModLeapSpeed							
-item_healafterhit	424	16	1	1	ModItemHPaH	ModItemHPaH							
-passive_phys_pierce	425	88	20	1	ModPhysPierce	ModPhysPierce							
-map_mon_ed%	426	115	8	2	MapMonHave	MapMonHave	MapEnhancedDmg						
-map_mon_splash	427	160	9	0	MapMon	MapMon	MapMonSplash						
-map_play_fireresist	428	204	7	2	MapPlayHave	MapPlayHave	ModStr1j	3	7	2	MapPlayHave	MapPlayHave	MapPlayAllRes
-map_play_lightresist	429	203	7	2	MapPlayHave	MapPlayHave	ModStr1l	3	7	2	MapPlayHave	MapPlayHave	MapPlayAllRes
-map_play_coldresist	430	202	7	2	MapPlayHave	MapPlayHave	ModStr1k	3	7	2	MapPlayHave	MapPlayHave	MapPlayAllRes
-map_play_poisonresist	431	201	7	2	MapPlayHave	MapPlayHave	ModStr1n	3	7	2	MapPlayHave	MapPlayHave	MapPlayAllRes
-map_mon_phys_as_extra_ltng	432	200	8	2	MapMonHave	MapMonHave	MapPhysExtraLtng						
-map_mon_phys_as_extra_cold	433	200	8	2	MapMonHave	MapMonHave	MapPhysExtraCold						
-map_mon_phys_as_extra_fire	434	200	8	2	MapMonHave	MapMonHave	MapPhysExtraFire						
-map_mon_phys_as_extra_pois	435	200	8	2	MapMonHave	MapMonHave	MapPhysExtraPois						
-map_mon_phys_as_extra_mag	436	200	8	2	MapMonHave	MapMonHave	MapPhysExtraMag						
-map_glob_add_mon_doll	437	160	3	0	MapAddMonDoll	MapAddMonDoll							
-map_glob_add_mon_succ	438	160	3	0	MapAddMonSucc	MapAddMonSucc							
-map_glob_add_mon_vamp	439	160	3	0	MapAddMonVamp	MapAddMonVamp							
-map_glob_add_mon_cow	440	160	3	0	MapAddMonCow	MapAddMonCow							
-map_glob_add_mon_horde	441	160	3	0	MapAddMonHorde	MapAddMonHorde							
-map_glob_add_mon_ghost	442	160	3	0	MapAddMonGhost	MapAddMonGhost							
-extra_bonespears	443	120	9	2	StrExtraBonespear	StrExtraBonespear	StrExtraBonespear2						
-extra_revives	444	68	9	2	StrExtraRevives	StrExtraRevives	StrExtraRevives2						
-immune_stat	445	88	4	1	ModitemdamFiresk	ModitemdamFiresk							
-mon_cooldown1	446	88	4	1	ModitemdamFiresk	ModitemdamFiresk							
-mon_cooldown2	447	88	4	1	ModitemdamFiresk	ModitemdamFiresk							
-mon_cooldown3	448	88	4	1	ModitemdamFiresk	ModitemdamFiresk							
-map_mon_deadlystrike	449	85	7	2	MapMonHave	MapMonHave	ModStr5q						
-map_mon_cannotbefrozen	450	20	9	0	MapMonHave	MapMonHave	ModStr5z						
-map_play_fasterattackrate	451	145	7	2	MapPlayHave	MapPlayHave	ModStr4m						
-map_play_fastercastrate	452	142	7	2	MapPlayHave	MapPlayHave	ModStr4v						
-map_mon_skillondeath	453	160	15		Moditemskondeath	Moditemskondeath							
-map_play_maxhp_percent	454	58	7	2	MapPlayHave	MapPlayHave	ModStr2g						
-map_play_maxmana_percent	455	54	7	2	MapPlayHave	MapPlayHave	ModStr2h						
-map_play_damageresist	456	22	7	2	MapPlayHave	MapPlayHave	ModStr2u						
-map_play_velocitypercent	457		7	2	MapPlayHave	MapPlayHave	ModVelocity						
-heroic	458	255	3	0	StrHeroic	StrHeroic							
-extra_spirits	459	68	9	2	StrExtraRevives	StrExtraRevives	StrExtraSpirits						

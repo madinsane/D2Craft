@@ -26,9 +26,9 @@ ltng-max		lightmaxdam
 pois-min		poisonmindam						
 pois-max		poisonmaxdam						
 pois-len		poisonlength						
-dmg-min								
-dmg-max								
-dmg%								
+dmg-min		mindamage						
+dmg-max		maxdamage						
+dmg%		damagepercent						
 dmg-to-mana		item_damagetomana						
 res-fire		fireresist						
 res-fire-max		maxfireresist						
